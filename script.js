@@ -148,18 +148,51 @@ function initNavHighlight() {
 }
 
 /**
- * Publication Hover to Expand Abstract
+ * Publication Click/Hover to Expand Abstract
+ * Uses click on mobile/touch devices, hover on desktop
  */
 function initPublicationExpand() {
     const pubItems = document.querySelectorAll('.pub-item');
+    const isTouchDevice = () => window.matchMedia('(hover: none)').matches || window.innerWidth <= 768;
     
     pubItems.forEach(item => {
+        // Click handler for touch devices and accessibility
+        item.addEventListener('click', (e) => {
+            // Don't toggle if clicking on a link
+            if (e.target.closest('.pub-link')) return;
+            
+            // On touch devices or when using keyboard, toggle on click
+            if (isTouchDevice() || e.detail === 0) {
+                item.classList.toggle('expanded');
+            }
+        });
+        
+        // Keyboard accessibility
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'button');
+        item.setAttribute('aria-expanded', 'false');
+        
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                item.classList.toggle('expanded');
+                item.setAttribute('aria-expanded', item.classList.contains('expanded'));
+            }
+        });
+        
+        // Hover handlers for desktop
         item.addEventListener('mouseenter', () => {
-            item.classList.add('expanded');
+            if (!isTouchDevice()) {
+                item.classList.add('expanded');
+                item.setAttribute('aria-expanded', 'true');
+            }
         });
         
         item.addEventListener('mouseleave', () => {
-            item.classList.remove('expanded');
+            if (!isTouchDevice()) {
+                item.classList.remove('expanded');
+                item.setAttribute('aria-expanded', 'false');
+            }
         });
     });
 }
