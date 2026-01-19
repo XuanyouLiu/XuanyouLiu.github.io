@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xuanyou Liu | HCI Researcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="particle-canvas"></canvas>
+    <div class="grain-overlay"></div>
+    
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">XL</a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#publications" class="nav-link">Publications</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#teaching" class="nav-link">Teaching</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-image-wrapper">
+                <div class="hero-image">
+                    <img src="Asset/Profile.png" alt="Xuanyou Liu" class="profile-img">
+                    <img src="Asset/Profile_hover.png" alt="Xuanyou Liu" class="profile-img-hover">
+                </div>
+            </div>
+            <div class="hero-text">
+                <p class="hero-greeting">Hello, I'm</p>
+                <h1 class="hero-name">Xuanyou Liu <span style="font-size: 0.5em; font-weight: 400;">(Zed)</span></h1>
+                <p class="hero-title">Ph.D. Student in Human-Computer Interaction</p>
+                <p class="hero-affiliation">Department of Computer Science<br>Northwestern University</p>
+                <div class="hero-links">
+                    <a href="mailto:xuanyou@u.northwestern.edu" class="btn btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        Email
+                    </a>
+                    <a href="Asset/Xuanyou_Zed_Liu_Resume.pdf" class="btn btn-secondary" target="_blank">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                        CV
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=FcQWVTYAAAAJ&hl=en" class="btn btn-icon" title="Google Scholar" target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/xuanyouliu" class="btn btn-icon" title="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/xuanyouliu/" class="btn btn-icon" title="LinkedIn" target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll to explore</span>
+            <div class="scroll-line"></div>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="section">
+            <div class="section-inner">
+                <h2 class="section-title">About</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p class="lead">I design and build interactive systems that augment human capabilities through novel sensing and haptic technologies.</p>
+                        <p>I am a Ph.D. student in Computer Science at <strong>Northwestern University</strong> (<a href="https://spice-lab.org" target="_blank">SPICE Lab</a>), advised by Prof. Karan Ahuja. My research lies at the intersection of <strong>human-computer interaction</strong>, <strong>wearable computing</strong>, and <strong>haptic interfaces</strong>.</p>
+                        <p>Before joining Northwestern, I worked at the University of Chicago(<a href="https://lab.plopes.org/" target="_blank">HCI Lab</a>) with Prof. Pedro Lopes. I received my M.S.E. in Robotics from the University of Pennsylvania (<a href="https://www.grasp.upenn.edu/" target="_blank">GRASP Lab</a>). I received my B.E. in Industrial Design from Xi'an Jiaotong University.</p>
+                    </div>
+                    <div class="about-news">
+                        <h3>News</h3>
+                        <ul class="news-list">
+                            <li><span class="news-date">Sep 2025</span> Started my Ph.D. at Northwestern University!</li>
+                            <li><span class="news-date">May 2025</span> Graduated from UPenn with M.S.E. in Robotics (GPA: 4.0, Rank: 1/64).</li>
+                            <li><span class="news-date">Jan 2025</span> Our paper "Seeing with the Hands" was accepted to CHI 2025!</li>
+                            <li><span class="news-date">May 2024</span> Presented TacTex at CHI 2024 in Honolulu, Hawaii.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="publications" class="section section-alt">
+            <div class="section-inner">
+                <h2 class="section-title">Publications</h2>
+                <p class="section-subtitle">* denotes equal contribution</p>
+                
+                <div class="publications-list">
+                    <article class="pub-item">
+                        <div class="pub-main">
+                            <div class="pub-thumbnail">
+                                <img src="Asset/Seeing_with_Hand.png" alt="Seeing with the Hands">
+                            </div>
+                            <div class="pub-content">
+                                <h3 class="pub-title">Seeing with the Hands: A Sensory Substitution That Supports Manual Interactions</h3>
+                                <p class="pub-authors">Shan-Yuan Teng*, Gene Kim*, <strong>Xuanyou Liu*</strong>, Pedro Lopez</p>
+                                <p class="pub-venue">CHI 2025 | ACM Conference on Human Factors in Computing Systems</p>
+                                <div class="pub-links">
+<a href="Asset/SeeingWithTheHand.pdf" class="pub-link" target="_blank" onclick="event.stopPropagation()">PDF</a>
+                                <a href="Asset/Seeing.mp4" class="pub-link" target="_blank" onclick="event.stopPropagation()">Video</a>
+                                <a href="https://doi.org/10.1145/3706598.3713419" class="pub-link" target="_blank" onclick="event.stopPropagation()">DOI</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pub-abstract">
+                            Sensory-substitution devices enable perceiving objects by translating one modality (e.g., vision) into another (e.g., tactile). While many explored the placement of the haptic-output (e.g., torso, forehead), the camera's location remains largely unexplored—typically seeing from the eyes' perspective. Instead, we propose that seeing & feeling information from the hands' perspective could enhance flexibility & expressivity of sensory-substitution devices to support manual interactions with physical objects. To this end, we engineered a back-of-the-hand electrotactile-display that renders tactile images from a wrist-mounted camera, allowing the user's hand to feel objects while reaching & hovering. We conducted a study with sighted/Blind-or-Low-Vision participants who used our eyes vs. hand tactile-perspectives to manipulate bottles and soldering-irons, etc. We found that while both tactile perspectives provided comparable performance, when offered the opportunity to choose, all participants found value in also using the hands' perspective. Moreover, we observed behaviors when "seeing with the hands" that suggest a more ergonomic object-manipulation. We believe these insights extend the landscape of sensory-substitution devices.
+                        </div>
+                    </article>
+
+                    <article class="pub-item">
+                        <div class="pub-main">
+                            <div class="pub-thumbnail">
+                                <img src="Asset/Tactex.png" alt="TacTex">
+                            </div>
+                            <div class="pub-content">
+                                <h3 class="pub-title">TacTex: A Textile Interface with Seamlessly-Integrated Electrodes for High-Resolution Electrotactile Stimulation</h3>
+                                <p class="pub-authors">Hongnan Lin, <strong>Xuanyou Liu</strong>, Shengsheng Jiang, Qi Wang, Ye Tao, Guanyun Wang, Wei Sun, Teng Han, Feng Tian</p>
+                                <p class="pub-venue">CHI 2024 | ACM Conference on Human Factors in Computing Systems</p>
+                                <div class="pub-links">
+<a href="Asset/TacTex.pdf" class="pub-link" target="_blank" onclick="event.stopPropagation()">PDF</a>
+                                <a href="Asset/TacTex.mp4" class="pub-link" target="_blank" onclick="event.stopPropagation()">Video</a>
+                                <a href="https://doi.org/10.1145/3613904.3642873" class="pub-link" target="_blank" onclick="event.stopPropagation()">DOI</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pub-abstract">
+                            This paper presents TacTex, a textile-based interface that provides high-resolution haptic feedback and touch-tracking capabilities. TacTex utilizes electrotactile stimulation, which has traditionally posed challenges due to limitations in textile electrode density and quantity. TacTex overcomes these challenges by employing a multi-layer woven structure that separates conductive weft and warp electrodes with non-conductive yarns. The driving system for TacTex includes a power supply, sensing board, and switch boards to enable spatial and temporal control of electrical stimuli on the textile, while simultaneously monitoring voltage changes. TacTex can stimulate a wide range of haptic effects, including static and dynamic patterns and different sensation qualities, with a resolution of 512 × 512 and based on linear electrodes spaced as closely as 2mm. We evaluate the performance of the interface with user studies and demonstrate the potential applications of TacTex interfaces in everyday textiles for adding haptic feedback.
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section section-alt">
+            <div class="section-inner">
+                <h2 class="section-title">Projects</h2>
+                
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-image">
+                            <img src="Asset/CompactHaptics.png" alt="Compact Electrotactile Module">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Compact Electrotactile Module for Wearable Haptic Interfaces</h3>
+                            <p class="project-desc">Independent study at University of Pennsylvania developing compact electrotactile stimulation modules for wearable haptic feedback systems.</p>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-image">
+                            <img src="Asset/Topology.png" alt="Variable Topology Trusses Robot">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Variable Topology Trusses Robot</h3>
+                            <p class="project-desc">Research at ModLab, University of Pennsylvania on reconfigurable truss robots capable of changing their topology for adaptive locomotion and manipulation.</p>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-image">
+                            <img src="Asset/insbucks.png" alt="Ins-Bucks Food 3D Printer">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Ins-Bucks Food 3D Printer</h3>
+                            <p class="project-desc">Award-winning design (Most Innovative Award) at the RCA-Imperial Design for Global Challenges Competition, focusing on sustainable food printing technology.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="teaching" class="section">
+            <div class="section-inner">
+                <h2 class="section-title">Teaching & Leadership</h2>
+                
+                <div class="teaching-list">
+                    <div class="course-item" data-hover-image="Asset/upenn.png" data-org-name="University of Pennsylvania">
+                        <div class="course-info">
+                            <h3 class="course-title">Teaching Assistant: ESE5190 Smart Devices</h3>
+                            <p class="course-desc">Graduate course at University of Pennsylvania covering embedded systems, IoT, and smart device development.</p>
+                        </div>
+                        <div class="course-meta">
+                            <span class="course-term">University of Pennsylvania</span>
+                        </div>
+                    </div>
+
+                    <div class="course-item" data-hover-image="Asset/fife-penn.png" data-org-name="Fife-Penn CS Academy">
+                        <div class="course-info">
+                            <h3 class="course-title">Code Instructor</h3>
+                            <p class="course-desc">Teaching programming fundamentals to high school students at Fife-Penn CS Academy.</p>
+                        </div>
+                        <div class="course-meta">
+                            <span class="course-term">Fife-Penn CS Academy</span>
+                        </div>
+                    </div>
+
+                    <div class="course-item" data-hover-image="Asset/ilo.png" data-org-name="International Labour Organization">
+                        <div class="course-info">
+                            <h3 class="course-title">Student Representative</h3>
+                            <p class="course-desc">Represented students at the Global Youth Forum 2021, organized by the International Labor Organization.</p>
+                        </div>
+                        <div class="course-meta">
+                            <span class="course-term">ILO Global Youth Forum 2021</span>
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="contact" class="section section-alt">
+            <div class="section-inner">
+                <h2 class="section-title">Contact</h2>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <p class="contact-lead">I'm always happy to chat about research, potential collaborations, or just to connect!</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                                <a href="mailto:xuanyou@u.northwestern.edu">xuanyou@u.northwestern.edu</a>
+                            </div>
+                            <div class="contact-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                <span>Room 3546, Mudd Building<br>Department of Computer Science<br>Northwestern University<br>Evanston, IL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-note">
+                        <h3>Let's Connect</h3>
+                        <p>Feel free to reach out if you're interested in novel sensing & haptic technologies in HCI. I'm also happy to discuss potential research collaborations or just have a casual chat about the field!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>© 2026 Xuanyou Liu. All rights reserved.</p>
+            <p class="footer-note">Last updated: January 2026</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="particles.js"></script>
+</body>
+</html>
