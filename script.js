@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavHighlight();
     initPublicationExpand();
     initThemeToggle();
+    initBackToTop();
 });
 
 /**
@@ -204,6 +205,47 @@ function initThemeToggle() {
             // Theme will auto-update via CSS media query
         }
     });
+}
+
+/**
+ * Back to Top Button
+ */
+function initBackToTop() {
+    const backToTopBtn = document.querySelector('.back-to-top');
+    
+    if (!backToTopBtn) return;
+    
+    // Show/hide button based on scroll position
+    const toggleBackToTop = () => {
+        if (window.scrollY > 400) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    };
+    
+    // Throttle scroll event
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                toggleBackToTop();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+    
+    // Scroll to top on click
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Initial check
+    toggleBackToTop();
 }
 
 /**
