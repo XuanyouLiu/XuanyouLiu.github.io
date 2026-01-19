@@ -1,7 +1,13 @@
 // Minimalist geometric shapes with mouse interaction
 (function() {
     const canvas = document.getElementById('particle-canvas');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
+
+    const interactionEnabled = () => (
+        !window.matchMedia('(pointer: coarse)').matches &&
+        window.innerWidth > 768
+    );
     
     let width, height;
     let mouseX = -1000, mouseY = -1000;
@@ -147,6 +153,10 @@
         time += 0.01;
         
         // Smooth mouse following
+        if (!interactionEnabled()) {
+            targetMouseX = -1000;
+            targetMouseY = -1000;
+        }
         mouseX += (targetMouseX - mouseX) * 0.1;
         mouseY += (targetMouseY - mouseY) * 0.1;
         
@@ -166,17 +176,20 @@
     window.addEventListener('resize', resize);
     
     window.addEventListener('mousemove', (e) => {
+        if (!interactionEnabled()) return;
         targetMouseX = e.clientX;
         targetMouseY = e.clientY;
     });
     
     window.addEventListener('mouseleave', () => {
+        if (!interactionEnabled()) return;
         targetMouseX = -1000;
         targetMouseY = -1000;
     });
     
     // Touch support
     window.addEventListener('touchmove', (e) => {
+        if (!interactionEnabled()) return;
         if (e.touches.length > 0) {
             targetMouseX = e.touches[0].clientX;
             targetMouseY = e.touches[0].clientY;
@@ -184,6 +197,7 @@
     });
     
     window.addEventListener('touchend', () => {
+        if (!interactionEnabled()) return;
         targetMouseX = -1000;
         targetMouseY = -1000;
     });

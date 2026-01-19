@@ -1112,9 +1112,6 @@ strong {
         grid-template-columns: 1fr;
     }
     
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
     
     .contact-content {
         grid-template-columns: 1fr;
@@ -1127,6 +1124,7 @@ strong {
         --space-2xl: 4rem;
         --space-3xl: 6rem;
     }
+
     
     .nav-links {
         display: flex;
@@ -1186,7 +1184,9 @@ strong {
     }
     
     .pub-thumbnail {
-        max-width: 250px;
+        width: 100%;
+        max-width: 100%;
+        align-self: stretch;
     }
     
     .projects-grid {
@@ -1273,7 +1273,7 @@ strong {
     }
     
     .section {
-        padding: var(--space-2xl) var(--space-md);
+        padding: var(--space-2xl) var(--space-lg);
     }
 }
 
