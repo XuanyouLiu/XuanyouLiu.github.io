@@ -6,7 +6,7 @@
 
     const interactionEnabled = () => (
         !window.matchMedia('(pointer: coarse)').matches &&
-        window.innerWidth > 768
+        !window.matchMedia('(hover: none)').matches
     );
     
     let width, height;
