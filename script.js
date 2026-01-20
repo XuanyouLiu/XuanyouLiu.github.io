@@ -116,20 +116,27 @@ function initNavHighlight() {
     if (sections.length === 0 || navLinks.length === 0) return;
     
     const highlightNav = () => {
-        const scrollPosition = window.scrollY + 100;
+        const scrollPosition = window.scrollY + 300; /* Adjusted offset for better trigger timing */
         
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute('id');
+            const sectionTitle = section.querySelector('.section-title');
             
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                // Highlight Nav Link
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === `#${sectionId}`) {
                         link.classList.add('active');
                     }
                 });
+
+                // Highlight Section Title
+                if (sectionTitle) sectionTitle.classList.add('active');
+            } else {
+                if (sectionTitle) sectionTitle.classList.remove('active');
             }
         });
     };

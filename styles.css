@@ -425,27 +425,16 @@ strong {
 .hero-name {
     margin-bottom: var(--space-md);
     color: var(--color-text);
-    display: inline-block; /* Required for transform */
+    display: inline-block;
+    transition: all 0.4s ease;
     position: relative;
-    cursor: default;
-    
-    /* Liquid Metal / Shimmer Effect on Hover */
-    background: linear-gradient(
-        110deg, 
-        var(--color-text) 30%, 
-        var(--color-accent-light) 45%, 
-        var(--color-text) 55%
-    );
-    background-size: 250% 100%;
-    background-position: 100% 0; /* Start position */
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: background-position 0.8s ease;
 }
 
 .hero-name:hover {
-    background-position: 0 0; /* End position */
+    color: var(--color-accent);
+    /* Soft ambient glow simulating electrotactile energy */
+    text-shadow: 0 0 15px var(--color-accent-light);
+    transform: scale(1.01); /* Micro lift */
 }
 
 .hero-title {
@@ -554,10 +543,40 @@ strong {
     margin: 0 auto;
 }
 
-.section-title {
-    margin-bottom: var(--space-lg);
+/* Responsive sizes - Base definition */
+h2.section-title { 
+    font-size: 2.5rem; 
+    margin-bottom: calc(var(--space-lg) + 10px); /* Add extra buffer for scaling */
     position: relative;
     display: inline-block;
+    /* Use transform for buttery smooth GPU-accelerated animation */
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transform-origin: 0 50%; /* Grow from left center */
+    will-change: transform; 
+}
+
+@media (max-width: 1024px) { h2.section-title { font-size: 2rem; } }
+@media (max-width: 768px) { h2.section-title { font-size: 1.75rem; } }
+
+/* Active State - High Specificity */
+h2.section-title.active {
+    transform: scale(1.1) translateZ(0); /* Reduced to 1.1 for subtle elegance */
+}
+
+/* Line animation - Keep it separate */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-accent);
+    transition: width 0.5s ease;
+}
+
+.section-title.active::after {
+    width: 100%;
 }
 
 .section-title::after {
@@ -568,6 +587,11 @@ strong {
     width: 60px;
     height: 2px;
     background-color: var(--color-accent);
+    transition: width 0.5s ease;
+}
+
+.section-title.active::after {
+    width: 100%; /* Line grows to cover full width */
 }
 
 .section-subtitle {
