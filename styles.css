@@ -425,6 +425,27 @@ strong {
 .hero-name {
     margin-bottom: var(--space-md);
     color: var(--color-text);
+    display: inline-block; /* Required for transform */
+    position: relative;
+    cursor: default;
+    
+    /* Liquid Metal / Shimmer Effect on Hover */
+    background: linear-gradient(
+        110deg, 
+        var(--color-text) 30%, 
+        var(--color-accent-light) 45%, 
+        var(--color-text) 55%
+    );
+    background-size: 250% 100%;
+    background-position: 100% 0; /* Start position */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background-position 0.8s ease;
+}
+
+.hero-name:hover {
+    background-position: 0 0; /* End position */
 }
 
 .hero-title {
@@ -616,11 +637,46 @@ strong {
 }
 
 .about-news .news-list li {
-    padding: var(--space-sm) 0;
+    padding: var(--space-sm) var(--space-sm); /* Add horizontal padding */
+    margin: 0 calc(var(--space-sm) * -1); /* Negative margin to align text but allow bg highlight */
     border-bottom: 1px solid var(--color-border-light);
     font-size: 0.9375rem;
     color: var(--color-text-muted);
     line-height: 1.6;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+    position: relative;
+}
+
+/* Hover effects only for mouse users */
+@media (hover: hover) {
+    .about-news .news-list li:hover {
+        background-color: var(--color-surface); /* Highlight bg */
+        transform: translateX(4px);
+        color: var(--color-text); /* Darken text */
+        border-bottom-color: transparent; /* Hide border on hover for cleaner look */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Slight lift */
+    }
+
+    /* Accent mark on hover */
+    .about-news .news-list li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%) scaleY(0);
+        width: 3px;
+        height: 70%;
+        background-color: var(--color-accent);
+        border-radius: 2px;
+        transition: transform 0.2s ease;
+        opacity: 0;
+    }
+
+    .about-news .news-list li:hover::before {
+        transform: translateY(-50%) scaleY(1);
+        opacity: 1;
+    }
 }
 
 .about-news .news-list li:last-child {
@@ -821,6 +877,7 @@ strong {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-md);
+    align-items: start; /* Prevent cards in the same row from stretching */
 }
 
 .project-card {
@@ -828,59 +885,177 @@ strong {
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--color-border-light);
-    transition: all var(--transition-base);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Smooth apple-like spring */
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-card:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0,0,0,0.05); /* Deeper, layered shadow */
+    transform: translateY(-6px) scale(1.01); /* Slight scale up along with lift */
+    border-color: var(--color-accent-light);
+    z-index: 10;
 }
 
 .project-image {
     aspect-ratio: 4/3;
     background-color: var(--color-bg-alt);
     overflow: hidden;
+    position: relative;
+}
+
+/* Subtle gloss overlay */
+.project-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.1) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: transform 0.6s;
+    pointer-events: none;
+}
+
+.project-card:hover .project-image::after {
+    transform: translateY(100%);
+    transition: transform 0.6s;
+    opacity: 0.3;
 }
 
 .project-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--transition-slow);
+    transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1); /* Slower, smoother zoom */
 }
 
 .project-card:hover .project-image img {
-    transform: scale(1.05);
-}
-
-.project-image-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text-light);
-    background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-border-light) 100%);
-}
-
-.project-image-placeholder svg {
-    width: 50%;
-    height: 50%;
+    transform: scale(1.08); /* More pronounced zoom */
 }
 
 .project-content {
     padding: var(--space-md);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    transition: background-color 0.3s ease;
+}
+
+.project-card:hover .project-content {
+    background: var(--color-bg); /* Subtle bg shift on hover */
 }
 
 .project-title {
     font-size: 1.125rem;
     margin-bottom: var(--space-sm);
+    transition: color 0.3s ease;
+    
+    /* Enforce consistent height for titles */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines max */
+    line-clamp: 3; /* Standard property */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 3.6em; /* Force height to equal 3 lines (1.2 line-height * 3) */
+    line-height: 1.2;
+}
+
+.project-card:hover .project-title {
+    color: var(--color-accent);
+}
+
+/* Tech Stack Reveal - Expand Animation */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 0;
+}
+
+/* Default styling for touch devices (hover: none) - Always expanded */
+@media (hover: none) {
+    .project-tags {
+        max-height: none;
+        opacity: 1;
+        margin-top: var(--space-md);
+    }
+}
+
+/* Styling for mouse devices (hover: hover) - Expand on hover */
+@media (hover: hover) {
+    .project-tags {
+        /* Collapsed state */
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        
+        /* Smooth expansion */
+        transition: max-height 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+                    opacity 0.4s ease 0.1s, /* Delay opacity slightly */
+                    margin-top 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .project-card:hover .project-tags {
+        /* Expanded state */
+        max-height: 200px; /* Safer max-height */
+        opacity: 1;
+        margin-top: var(--space-md);
+    }
+}
+
+.project-tags span {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background-color: var(--color-bg-alt);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    /* Prevent tags from squishing during animation */
+    flex-shrink: 0;
+}
+
+/* Optional: Slight fade out/move of description to focus on tags */
+.project-desc {
+    transition: opacity 0.3s ease;
+}
+/* .project-card:hover .project-desc {
+    opacity: 0.7;
+} */
+
+/* Ensure content container adjusts naturally */
+.project-content {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-md);
+    background: var(--color-surface);
+    transition: background-color 0.3s ease;
+    /* Removed height: 100% to prevent unnecessary whitespace */
 }
 
 .project-desc {
     font-size: 0.9375rem;
     color: var(--color-text-muted);
     margin-bottom: var(--space-md);
+    
+    /* Enforce uniform height for alignment */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Show exactly 3 lines */
+    line-clamp: 3; /* Standard property */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 4.5em; /* Fallback/Fixed height for alignment (1.5 line-height * 3) */
+    line-height: 1.5;
 }
 
 .project-link {
@@ -1286,14 +1461,14 @@ strong {
         font-size: 0.9rem;
         display: -webkit-box;
         -webkit-line-clamp: 3;
+        line-clamp: 3; /* Standard property */
         -webkit-box-orient: vertical;
         overflow: hidden;
         margin-bottom: 0;
+        height: auto; /* Let height be auto on mobile for better fit */
     }
     
-    .project-tags {
-        display: none;
-    }
+    /* .project-tags style is handled by (hover: none) media query above */
     
     .course-item {
         flex-direction: column;
@@ -1376,6 +1551,89 @@ strong {
 .course-item:nth-child(1) { animation-delay: 0.1s; }
 .course-item:nth-child(2) { animation-delay: 0.2s; }
 .course-item:nth-child(3) { animation-delay: 0.3s; }
+
+/* ============================================
+   VIDEO PREVIEW
+   ============================================ */
+.pub-thumbnail {
+    position: relative;
+    /* Ensure video stays within rounded corners if any */
+    overflow: hidden; 
+}
+
+.pub-thumbnail video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fill the container */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+    background-color: var(--color-bg-alt); /* Prevent transparent gaps */
+}
+
+/* Show video on hover (desktop only) */
+@media (hover: hover) {
+    .pub-thumbnail.playing video {
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   MAGNETIC BUTTONS
+   ============================================ */
+.btn-icon {
+    /* Existing styles remain, ensuring transitions don't conflict */
+    transition: color 0.2s, background-color 0.2s, transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ============================================
+   INTERACTIVE EFFECTS
+   ============================================ */
+
+/* Spotlight Effect for Cards - Sensing the user's input */
+.spotlight-card {
+    position: relative;
+    overflow: hidden;
+    /* Ensure content is above the spotlight */
+    z-index: 1;
+}
+
+.spotlight-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2; /* On top of content, but non-interactive */
+    /* Spotlight gradient - subtle warm glow following mouse */
+    background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+        rgba(139, 69, 19, 0.1), /* Increased opacity for visibility */
+        transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    mix-blend-mode: multiply; /* Helps it show up on light backgrounds */
+}
+
+.spotlight-card:hover::after {
+    opacity: 1;
+}
+
+/* Dark mode adjustment - brighter glow */
+[data-theme="dark"] .spotlight-card::after {
+    background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+        rgba(255, 180, 60, 0.1), /* Warm amber/orange glow */
+        transparent 40%
+    );
+    mix-blend-mode: screen; /* "screen" works better for colored light on dark bg */
+}
 
 /* Print styles */
 @media print {

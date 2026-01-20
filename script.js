@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initPublicationExpand();
     initThemeToggle();
     initBackToTop();
+    initSpotlightEffect();
+    initVideoPreview();
+    initMagneticButtons();
 });
 
 /**
@@ -285,6 +288,33 @@ function initBackToTop() {
 }
 
 /**
+ * Spotlight Effect for Cards
+ * Adds a cursor-following glow to cards to simulate "sensing"
+ */
+function initSpotlightEffect() {
+    // Check if device supports hover
+    if (window.matchMedia('(hover: none)').matches) return;
+
+    const cards = document.querySelectorAll('.pub-item, .project-card, .course-item, .contact-note');
+    
+    if (cards.length === 0) return;
+    
+    // Add the class for CSS styling
+    cards.forEach(card => card.classList.add('spotlight-card'));
+    
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+}
+
+/**
  * Add active state styling for nav links
  */
 const style = document.createElement('style');
@@ -316,3 +346,74 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+/**
+ * Video Preview on Hover
+ * Plays video when hovering over publication thumbnails
+ */
+function initVideoPreview() {
+    // Skip on touch devices
+    if (window.matchMedia('(hover: none)').matches) return;
+
+    // Select all publication items instead of just thumbnails
+    const pubItems = document.querySelectorAll('.pub-item');
+
+    pubItems.forEach(item => {
+        // Find the video inside this item's thumbnail
+        const thumb = item.querySelector('.pub-thumbnail');
+        const video = thumb ? thumb.querySelector('video') : null;
+        
+        if (!video || !thumb) return;
+
+        let playPromise;
+
+        item.addEventListener('mouseenter', () => {
+            thumb.classList.add('playing');
+            video.currentTime = 0;
+            video.playbackRate = 3.0; // Play at 3x speed
+            playPromise = video.play();
+        });
+
+        item.addEventListener('mouseleave', () => {
+            thumb.classList.remove('playing');
+            
+            // Safely pause checking if play promise exists
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    video.pause();
+                    video.currentTime = 0;
+                }).catch(error => {
+                    // Auto-play was prevented
+                });
+            }
+        });
+    });
+}
+
+/**
+ * Magnetic Buttons Effect
+ * Buttons slightly follow the mouse cursor
+ */
+function initMagneticButtons() {
+    // Skip on touch devices
+    if (window.matchMedia('(hover: none)').matches) return;
+
+    const buttons = document.querySelectorAll('.btn-icon, .btn-primary, .btn-secondary');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            // Magnetic strength (lower number = stronger pull)
+            const strength = 5; 
+            
+            btn.style.transform = `translate(${x/strength}px, ${y/strength}px)`;
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0, 0)';
+        });
+    });
+}

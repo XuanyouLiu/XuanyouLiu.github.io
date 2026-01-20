@@ -131,7 +131,7 @@
                 <h2 class="section-title">About</h2>
                 <div class="about-content">
                     <div class="about-text">
-                        <p class="lead">I design and build interactive systems that augment human capabilities through novel sensing and haptic technologies.</p>
+                        <p class="lead">I design and build interactive systems that improve user experiences through novel sensing and haptic technologies.</p>
                         <p>I am a Ph.D. student in Computer Science at <strong>Northwestern University</strong> (<a href="https://spice-lab.org" target="_blank" rel="noopener noreferrer">SPICE Lab</a>), advised by Prof. Karan Ahuja. My research lies at the intersection of <strong>human-computer interaction</strong>, <strong>wearable computing</strong>, and <strong>haptic interfaces</strong>.</p>
                         <p>Before joining Northwestern, I worked at the University of Chicago (<a href="https://lab.plopes.org/" target="_blank" rel="noopener noreferrer">HCI Lab</a>) with Prof. Pedro Lopes. I received my M.S.E. in Robotics from the University of Pennsylvania (<a href="https://www.grasp.upenn.edu/" target="_blank" rel="noopener noreferrer">GRASP Lab</a>) and my B.E. in Industrial Design from Xi'an Jiaotong University.</p>
                     </div>
@@ -158,10 +158,11 @@
                         <div class="pub-main">
                             <div class="pub-thumbnail">
                                 <img src="Asset/Seeing_with_Hand.png" alt="Seeing with the Hands" loading="lazy">
+                                <video src="Asset/Seeing.mp4" muted loop playsinline preload="none"></video>
                             </div>
                             <div class="pub-content">
                                 <h3 class="pub-title">Seeing with the Hands: A Sensory Substitution That Supports Manual Interactions</h3>
-                                <p class="pub-authors">Shan-Yuan Teng*, Gene Kim*, <strong>Xuanyou Liu*</strong>, Pedro Lopez</p>
+                                <p class="pub-authors">Shan-Yuan Teng*, Gene Kim*, <strong>Xuanyou Liu*</strong>, Pedro Lopes</p>
                                 <p class="pub-venue">CHI 2025 | ACM Conference on Human Factors in Computing Systems</p>
                                 <div class="pub-links">
 <a href="Asset/SeeingWithTheHand.pdf" class="pub-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">PDF</a>
@@ -171,7 +172,7 @@
                             </div>
                         </div>
                         <div class="pub-abstract">
-                            Sensory-substitution devices enable perceiving objects by translating one modality (e.g., vision) into another (e.g., tactile). While many explored the placement of the haptic-output (e.g., torso, forehead), the camera's location remains largely unexplored—typically seeing from the eyes' perspective. Instead, we propose that seeing & feeling information from the hands' perspective could enhance flexibility & expressivity of sensory-substitution devices to support manual interactions with physical objects. To this end, we engineered a back-of-the-hand electrotactile-display that renders tactile images from a wrist-mounted camera, allowing the user's hand to feel objects while reaching & hovering. We conducted a study with sighted/Blind-or-Low-Vision participants who used our eyes vs. hand tactile-perspectives to manipulate bottles and soldering-irons, etc. We found that while both tactile perspectives provided comparable performance, when offered the opportunity to choose, all participants found value in also using the hands' perspective. Moreover, we observed behaviors when "seeing with the hands" that suggest a more ergonomic object-manipulation. We believe these insights extend the landscape of sensory-substitution devices.
+                            Sensory substitution devices enable users to perceive visual information through other modalities, such as touch. However, most existing devices place the camera at the user's eyes (head-mounted), which limits the ability to coordinate manual interactions. We propose "seeing and feeling" from the hand's perspective to enhance the flexibility and expressivity of sensory substitution. To this end, we engineered a back-of-the-hand electrotactile display that renders tactile images from a wrist-mounted camera, allowing users to feel objects while reaching and hovering. In a user study with sighted and blind or low-vision participants, we compared our hand-centered perspective against traditional head-mounted views in manipulation tasks (e.g., handling bottles, soldering). Results indicate that while both perspectives yield comparable performance, participants preferred the flexibility of the hand's perspective, which supported more ergonomic object manipulation strategies.
                         </div>
                     </article>
 
@@ -179,6 +180,7 @@
                         <div class="pub-main">
                             <div class="pub-thumbnail">
                                 <img src="Asset/Tactex.png" alt="TacTex" loading="lazy">
+                                <video src="Asset/TacTex.mp4" muted loop playsinline preload="none"></video>
                             </div>
                             <div class="pub-content">
                                 <h3 class="pub-title">TacTex: A Textile Interface with Seamlessly-Integrated Electrodes for High-Resolution Electrotactile Stimulation</h3>
@@ -192,7 +194,7 @@
                             </div>
                         </div>
                         <div class="pub-abstract">
-                            This paper presents TacTex, a textile-based interface that provides high-resolution haptic feedback and touch-tracking capabilities. TacTex utilizes electrotactile stimulation, which has traditionally posed challenges due to limitations in textile electrode density and quantity. TacTex overcomes these challenges by employing a multi-layer woven structure that separates conductive weft and warp electrodes with non-conductive yarns. The driving system for TacTex includes a power supply, sensing board, and switch boards to enable spatial and temporal control of electrical stimuli on the textile, while simultaneously monitoring voltage changes. TacTex can stimulate a wide range of haptic effects, including static and dynamic patterns and different sensation qualities, with a resolution of 512 × 512 and based on linear electrodes spaced as closely as 2mm. We evaluate the performance of the interface with user studies and demonstrate the potential applications of TacTex interfaces in everyday textiles for adding haptic feedback.
+                            Electrotactile stimulation offers a promising path for high-resolution wearable haptics but has traditionally struggled with integration into soft, everyday textiles. We present TacTex, a textile interface that seamlessly integrates high-density haptic feedback and touch sensing. By employing a novel multi-layer woven structure that separates conductive electrodes with non-conductive yarns, TacTex achieves a sensing and actuation resolution of 512 × 512 with electrode spacing as small as 2mm. The system includes a custom driving board that enables precise spatial and temporal control of electrical stimuli while simultaneously monitoring voltage changes for touch tracking. Our technical evaluation and user studies demonstrate that TacTex can render a wide range of haptic effects, including complex static and dynamic patterns, effectively bringing high-fidelity haptic feedback to everyday clothing.
                         </div>
                     </article>
                 </div>
@@ -209,8 +211,13 @@
                             <img src="Asset/CompactHaptics.png" alt="Compact Electrotactile Module" loading="lazy">
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">Compact Electrotactile Module for Wearable Haptic Interfaces</h3>
+                            <h3 class="project-title">Electrotactile for Wearable Haptic</h3>
                             <p class="project-desc">Independent study at University of Pennsylvania developing compact electrotactile stimulation modules for wearable haptic feedback systems.</p>
+                            <div class="project-tags">
+                                <span>PCB Design</span>
+                                <span>Haptics</span>
+                                <span>Embedded Systems</span>
+                            </div>
                         </div>
                     </article>
 
@@ -221,6 +228,11 @@
                         <div class="project-content">
                             <h3 class="project-title">Variable Topology Trusses Robot</h3>
                             <p class="project-desc">Research at ModLab, University of Pennsylvania on reconfigurable truss robots capable of changing their topology for adaptive locomotion and manipulation.</p>
+                            <div class="project-tags">
+                                <span>Robotics</span>
+                                <span>Mechanism Design</span>
+                                <span>Control</span>
+                            </div>
                         </div>
                     </article>
 
@@ -231,6 +243,11 @@
                         <div class="project-content">
                             <h3 class="project-title">Ins-Bucks Food 3D Printer</h3>
                             <p class="project-desc">Award-winning design (Most Innovative Award) at the RCA-Imperial Design for Global Challenges Competition, focusing on sustainable food printing technology.</p>
+                            <div class="project-tags">
+                                <span>3D Printing</span>
+                                <span>Product Design</span>
+                                <span>UI/UX Design</span>
+                            </div>
                         </div>
                     </article>
                 </div>
