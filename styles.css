@@ -957,16 +957,16 @@ strong {
 
 .project-title {
     font-size: 1.125rem;
-    margin-bottom: var(--space-sm);
+    margin-bottom: 0; /* Reduced from space-sm to avoid double gap with min-height */
     transition: color 0.3s ease;
     
     /* Enforce consistent height for titles */
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Limit to 3 lines max */
-    line-clamp: 3; /* Standard property */
+    -webkit-line-clamp: 2; /* Limit to 2 lines max - fits most titles better */
+    line-clamp: 2; /* Standard property */
     -webkit-box-orient: vertical;
     overflow: hidden;
-    min-height: 3.6em; /* Force height to equal 3 lines (1.2 line-height * 3) */
+    min-height: 2.4em; /* Force height to equal 2 lines (1.2 line-height * 2) */
     line-height: 1.2;
 }
 
@@ -982,12 +982,10 @@ strong {
     margin-top: 0;
 }
 
-/* Default styling for touch devices (hover: none) - Always expanded */
+/* Default styling for touch devices (hover: none) - Hidden to keep it clean */
 @media (hover: none) {
     .project-tags {
-        max-height: none;
-        opacity: 1;
-        margin-top: var(--space-md);
+        display: none;
     }
 }
 
@@ -1427,10 +1425,10 @@ strong {
     
     .project-image {
         width: 120px;
-        height: 120px;
+        height: 100%; /* Stretch to fill card height */
         min-width: 120px;
-        min-height: 120px;
-        aspect-ratio: 1/1;
+        /* Removed fixed height/min-height constraints */
+        aspect-ratio: auto; /* Override default aspect ratio */
         flex-shrink: 0;
     }
     
