@@ -231,17 +231,28 @@ function initThemeToggle() {
         
         let newTheme;
         
+        // Calculate new theme based on current state or system default
         if (currentTheme === 'dark') {
             newTheme = 'light';
         } else if (currentTheme === 'light') {
             newTheme = 'dark';
         } else {
-            // No manual theme set, toggle from system preference
+            // If no attribute set (auto mode), toggle away from system preference
             newTheme = systemPrefersDark ? 'light' : 'dark';
         }
         
         document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+        
+        // Smart Storage Logic:
+        // If the new theme matches the system preference, clear storage (return to auto mode)
+        // If it differs, save the preference
+        if ((newTheme === 'dark' && systemPrefersDark) || 
+            (newTheme === 'light' && !systemPrefersDark)) {
+            localStorage.removeItem('theme');
+            document.documentElement.removeAttribute('data-theme'); // Let CSS take over
+        } else {
+            localStorage.setItem('theme', newTheme);
+        }
     });
     
     // Listen for system theme changes
