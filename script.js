@@ -165,41 +165,38 @@ function initNavHighlight() {
 function initPublicationExpand() {
     const pubItems = document.querySelectorAll('.pub-item');
     
-    // Check if device supports hover (not touch-only)
-    const isTouchDevice = () => {
-        return window.matchMedia('(hover: none)').matches || 
-               window.matchMedia('(pointer: coarse)').matches;
+    // Check screen width for layout determination
+    const isMobileWidth = () => {
+        return window.innerWidth < 768;
     };
     
     pubItems.forEach(item => {
-        if (isTouchDevice()) {
-            // Mobile: tap to toggle, NO auto-closing of others
-            item.addEventListener('click', (e) => {
+        // We use 'click' for mobile/narrow screens AND as a fallback
+        // We use 'mouseenter'/'mouseleave' for desktop
+        
+        item.addEventListener('click', (e) => {
+            // Only trigger click toggle if screen is narrow
+            if (isMobileWidth()) {
                 // Don't toggle if clicking on links
                 if (e.target.closest('.pub-link')) return;
                 
-                // Toggle current item only
+                // Toggle current item only - no auto-close of others
                 item.classList.toggle('expanded');
-            });
-        } else {
-            // Desktop: hover to expand
-            item.addEventListener('mouseenter', () => {
+            }
+        });
+
+        // Desktop hover interactions
+        item.addEventListener('mouseenter', () => {
+            if (!isMobileWidth()) {
                 item.classList.add('expanded');
-            });
-            
-            item.addEventListener('mouseleave', () => {
+            }
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            if (!isMobileWidth()) {
                 item.classList.remove('expanded');
-            });
-        }
-    });
-    
-    // Close expanded items when clicking outside (mobile)
-    document.addEventListener('click', (e) => {
-        if (isTouchDevice() && !e.target.closest('.pub-item')) {
-            pubItems.forEach(item => {
-                item.classList.remove('expanded');
-            });
-        }
+            }
+        });
     });
 }
 
