@@ -173,19 +173,12 @@ function initPublicationExpand() {
     
     pubItems.forEach(item => {
         if (isTouchDevice()) {
-            // Mobile: tap to toggle
+            // Mobile: tap to toggle, NO auto-closing of others
             item.addEventListener('click', (e) => {
                 // Don't toggle if clicking on links
                 if (e.target.closest('.pub-link')) return;
                 
-                // Close other expanded items
-                pubItems.forEach(other => {
-                    if (other !== item) {
-                        other.classList.remove('expanded');
-                    }
-                });
-                
-                // Toggle current item
+                // Toggle current item only
                 item.classList.toggle('expanded');
             });
         } else {
