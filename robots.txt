@@ -1,0 +1,11 @@
+# robots.txt for xuanyouliu.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://xuanyouliu.com/sitemap.xml
+
+# Disallow crawling of asset files (optional, keeps index cleaner)
+# Uncomment if you don't want PDFs indexed separately
+# Disallow: /Asset/*.pdf
