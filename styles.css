@@ -1630,31 +1630,45 @@ h2.section-title.active {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 2; /* On top of content, but non-interactive */
-    /* Spotlight gradient - subtle warm glow following mouse */
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    /* Default (Light Mode) Styling */
     background: radial-gradient(
         600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-        rgba(139, 69, 19, 0.1), /* Increased opacity for visibility */
+        rgba(139, 69, 19, 0.1), 
         transparent 40%
     );
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
-    mix-blend-mode: multiply; /* Helps it show up on light backgrounds */
+    mix-blend-mode: multiply;
 }
 
 .spotlight-card:hover::after {
     opacity: 1;
 }
 
-/* Dark mode adjustment - brighter glow */
+/* Dark Mode Override - Stronger, brighter glow */
 [data-theme="dark"] .spotlight-card::after {
     background: radial-gradient(
         600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-        rgba(255, 180, 60, 0.1), /* Warm amber/orange glow */
+        rgba(255, 160, 40, 0.08), /* Reduced opacity for subtlety */
         transparent 40%
     );
-    mix-blend-mode: screen; /* "screen" works better for colored light on dark bg */
+    mix-blend-mode: normal !important;
+    z-index: 99;
+}
+
+/* Apply same style when system is dark and no theme is set */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .spotlight-card::after {
+        background: radial-gradient(
+            600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+            rgba(255, 160, 40, 0.08), /* Reduced opacity */
+            transparent 40%
+        );
+        mix-blend-mode: normal !important;
+        z-index: 99;
+    }
 }
 
 /* Print styles */
