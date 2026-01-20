@@ -2,7 +2,15 @@
 (function() {
     const canvas = document.getElementById('particle-canvas');
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    
+    // Detect Safari for performance optimizations
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    
+    // Use optimized canvas context
+    const ctx = canvas.getContext('2d', { 
+        alpha: true,
+        desynchronized: true  // Reduces latency on supported browsers
+    });
 
     const interactionEnabled = () => (
         !window.matchMedia('(pointer: coarse)').matches &&
@@ -14,6 +22,10 @@
     let targetMouseX = -1000, targetMouseY = -1000;
     let time = 0;
     let shapes = [];
+    let animationId;
+    let lastFrameTime = 0;
+    const targetFPS = isSafari ? 30 : 60;  // Lower FPS on Safari
+    const frameInterval = 1000 / targetFPS;
     
     // Resize canvas
     function resize() {
@@ -113,15 +125,19 @@
     // Initialize shapes
     function initShapes() {
         shapes = [];
-        const count = Math.floor((width * height) / 25000); // More shapes
-        for (let i = 0; i < Math.max(count, 15); i++) {
+        // Reduce shape count on Safari for better performance
+        const baseDensity = isSafari ? 40000 : 25000;
+        const minShapes = isSafari ? 8 : 15;
+        const count = Math.floor((width * height) / baseDensity);
+        for (let i = 0; i < Math.max(count, minShapes); i++) {
             shapes.push(new Shape());
         }
     }
     
     // Draw connecting lines between nearby shapes
     function drawConnections() {
-        const maxDist = 250;
+        // Reduce connection distance on Safari
+        const maxDist = isSafari ? 180 : 250;
         
         for (let i = 0; i < shapes.length; i++) {
             for (let j = i + 1; j < shapes.length; j++) {
@@ -146,8 +162,17 @@
         }
     }
     
-    // Animation loop
-    function animate() {
+    // Animation loop with frame rate limiting for Safari
+    function animate(currentTime) {
+        animationId = requestAnimationFrame(animate);
+        
+        // Frame rate limiting for Safari
+        if (isSafari) {
+            const elapsed = currentTime - lastFrameTime;
+            if (elapsed < frameInterval) return;
+            lastFrameTime = currentTime - (elapsed % frameInterval);
+        }
+        
         ctx.clearRect(0, 0, width, height);
         
         time += 0.01;
@@ -168,8 +193,6 @@
             shape.update();
             shape.draw();
         });
-        
-        requestAnimationFrame(animate);
     }
     
     // Event listeners
