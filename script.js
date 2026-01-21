@@ -356,18 +356,15 @@ style.textContent = `
 document.head.appendChild(style);
 
 /**
- * Video Preview on Hover
- * Plays video when hovering over publication thumbnails
+ * Video Preview on Hover/Expand
+ * Desktop: plays video when hovering over publication items
+ * Mobile: plays video when publication is expanded (clicked)
  */
 function initVideoPreview() {
-    // Skip on touch devices
-    if (window.matchMedia('(hover: none)').matches) return;
-
-    // Select all publication items instead of just thumbnails
     const pubItems = document.querySelectorAll('.pub-item');
+    const isTouchDevice = window.matchMedia('(hover: none)').matches;
 
     pubItems.forEach(item => {
-        // Find the video inside this item's thumbnail
         const thumb = item.querySelector('.pub-thumbnail');
         const video = thumb ? thumb.querySelector('video') : null;
         
@@ -375,17 +372,18 @@ function initVideoPreview() {
 
         let playPromise;
 
-        item.addEventListener('mouseenter', () => {
+        // Helper: Start video playback
+        const startVideo = () => {
             thumb.classList.add('playing');
             video.currentTime = 0;
-            video.playbackRate = 3.0; // Play at 3x speed
+            // Preview video is already 1.5x speed, play at normal rate
+            video.playbackRate = 1.0;
             playPromise = video.play();
-        });
+        };
 
-        item.addEventListener('mouseleave', () => {
+        // Helper: Stop video playback
+        const stopVideo = () => {
             thumb.classList.remove('playing');
-            
-            // Safely pause checking if play promise exists
             if (playPromise !== undefined) {
                 playPromise.then(_ => {
                     video.pause();
@@ -394,7 +392,27 @@ function initVideoPreview() {
                     // Auto-play was prevented
                 });
             }
-        });
+        };
+
+        if (isTouchDevice) {
+            // Mobile: Use MutationObserver to watch for 'expanded' class changes
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach(mutation => {
+                    if (mutation.attributeName === 'class') {
+                        if (item.classList.contains('expanded')) {
+                            startVideo();
+                        } else {
+                            stopVideo();
+                        }
+                    }
+                });
+            });
+            observer.observe(item, { attributes: true });
+        } else {
+            // Desktop: Hover interactions
+            item.addEventListener('mouseenter', startVideo);
+            item.addEventListener('mouseleave', stopVideo);
+        }
     });
 }
 

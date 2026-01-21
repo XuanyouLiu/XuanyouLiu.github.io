@@ -1634,11 +1634,9 @@ h2.section-title.active {
     background-color: var(--color-bg-alt); /* Prevent transparent gaps */
 }
 
-/* Show video on hover (desktop only) */
-@media (hover: hover) {
-    .pub-thumbnail.playing video {
-        opacity: 1;
-    }
+/* Show video when playing (desktop hover or mobile tap) */
+.pub-thumbnail.playing video {
+    opacity: 1;
 }
 
 /* ============================================
