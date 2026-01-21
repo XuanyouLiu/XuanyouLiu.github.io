@@ -1079,9 +1079,11 @@ h2.section-title.active {
     
     /* Research card description expand */
     .project-card.expanded .project-desc {
-        -webkit-line-clamp: unset;
-        line-clamp: unset;
-        display: block;
+        max-height: 500px;
+    }
+    
+    .project-card.expanded .project-desc::after {
+        opacity: 0;
     }
     
     .project-tags {
@@ -1204,21 +1206,33 @@ h2.section-title.active {
     font-size: 0.9375rem;
     color: var(--color-text-muted);
     margin-bottom: var(--space-md);
-    
-    /* Line clamp for ellipsis */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
+    max-height: 4.5em;
     overflow: hidden;
+    position: relative;
+    transition: max-height 0.35s ease;
+}
+
+/* Fade out gradient to indicate more content */
+.project-desc::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1.5em;
+    background: linear-gradient(transparent, var(--color-surface));
+    pointer-events: none;
+    transition: opacity 0.35s ease;
 }
 
 /* Expand description on hover (desktop only) */
 @media (hover: hover) {
     .project-card:hover .project-desc {
-        -webkit-line-clamp: unset;
-        line-clamp: unset;
-        display: block;
+        max-height: 500px;
+    }
+    
+    .project-card:hover .project-desc::after {
+        opacity: 0;
     }
 }
 
