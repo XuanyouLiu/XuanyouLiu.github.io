@@ -1046,6 +1046,16 @@ h2.section-title.active {
 
 /* Default styling for touch devices (hover: none) - Collapsed by default, expand on tap */
 @media (hover: none) {
+    .project-desc {
+        max-height: 4.5em;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+    }
+    
+    .project-card.expanded .project-desc {
+        max-height: 500px;
+    }
+    
     .project-tags {
         max-height: 0;
         opacity: 0;
@@ -1174,16 +1184,9 @@ h2.section-title.active {
     font-size: 0.9375rem;
     color: var(--color-text-muted);
     margin-bottom: var(--space-md);
-    
-    /* Use max-height for smooth animation */
-    max-height: 4.5em; /* ~3 lines */
+    max-height: 4.5em;
     overflow: hidden;
     transition: max-height 0.35s ease;
-}
-
-/* Expand description on tap (mobile) */
-.project-card.expanded .project-desc {
-    max-height: 500px;
 }
 
 /* Expand description on hover (desktop only) */
@@ -1594,14 +1597,7 @@ h2.section-title.active {
     
     .project-desc {
         font-size: 0.9rem;
-        max-height: 4.5em; /* ~3 lines */
-        overflow: hidden;
         margin-bottom: 0;
-        transition: max-height 0.35s ease;
-    }
-    
-    .project-card.expanded .project-desc {
-        max-height: 500px;
     }
     
     /* .project-tags style is handled by (hover: none) media query above */
