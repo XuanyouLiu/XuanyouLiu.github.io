@@ -1085,6 +1085,64 @@ h2.section-title.active {
     flex-shrink: 0;
 }
 
+/* University affiliation tags with school colors (subtle style) */
+.project-tags .tag-uchicago {
+    background-color: rgba(128, 0, 0, 0.1);
+    color: #800000;
+    border-color: rgba(128, 0, 0, 0.3);
+}
+
+.project-tags .tag-northwestern {
+    background-color: rgba(78, 42, 132, 0.1);
+    color: #4E2A84;
+    border-color: rgba(78, 42, 132, 0.3);
+}
+
+.project-tags .tag-upenn {
+    background-color: rgba(1, 31, 91, 0.1);
+    color: #011F5B;
+    border-color: rgba(1, 31, 91, 0.3);
+}
+
+/* Dark mode adjustments for university tags */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .project-tags .tag-uchicago {
+        background-color: rgba(128, 0, 0, 0.2);
+        color: #e07070;
+        border-color: rgba(128, 0, 0, 0.4);
+    }
+    
+    :root:not([data-theme="light"]) .project-tags .tag-northwestern {
+        background-color: rgba(78, 42, 132, 0.2);
+        color: #a888d0;
+        border-color: rgba(78, 42, 132, 0.4);
+    }
+    
+    :root:not([data-theme="light"]) .project-tags .tag-upenn {
+        background-color: rgba(1, 31, 91, 0.2);
+        color: #7090c0;
+        border-color: rgba(1, 31, 91, 0.4);
+    }
+}
+
+[data-theme="dark"] .project-tags .tag-uchicago {
+    background-color: rgba(128, 0, 0, 0.2);
+    color: #e07070;
+    border-color: rgba(128, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .project-tags .tag-northwestern {
+    background-color: rgba(78, 42, 132, 0.2);
+    color: #a888d0;
+    border-color: rgba(78, 42, 132, 0.4);
+}
+
+[data-theme="dark"] .project-tags .tag-upenn {
+    background-color: rgba(1, 31, 91, 0.2);
+    color: #7090c0;
+    border-color: rgba(1, 31, 91, 0.4);
+}
+
 /* Optional: Slight fade out/move of description to focus on tags */
 .project-desc {
     transition: opacity 0.3s ease;
