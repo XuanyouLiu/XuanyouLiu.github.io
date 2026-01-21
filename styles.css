@@ -1181,10 +1181,16 @@ h2.section-title.active {
     transition: max-height 0.35s ease;
 }
 
-/* Expand description on hover (desktop) or tap (mobile) */
-.project-card:hover .project-desc,
+/* Expand description on tap (mobile) */
 .project-card.expanded .project-desc {
-    max-height: 500px; /* Large enough for full content */
+    max-height: 500px;
+}
+
+/* Expand description on hover (desktop only) */
+@media (hover: hover) {
+    .project-card:hover .project-desc {
+        max-height: 500px;
+    }
 }
 
 .project-link {
