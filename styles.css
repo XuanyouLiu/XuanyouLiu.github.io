@@ -1162,14 +1162,6 @@ h2.section-title.active {
     border-color: rgba(1, 31, 91, 0.4);
 }
 
-/* Optional: Slight fade out/move of description to focus on tags */
-.project-desc {
-    transition: opacity 0.3s ease;
-}
-/* .project-card:hover .project-desc {
-    opacity: 0.7;
-} */
-
 /* Ensure content container adjusts naturally */
 .project-content {
     display: flex;
