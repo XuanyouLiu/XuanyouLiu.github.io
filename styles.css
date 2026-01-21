@@ -953,11 +953,14 @@ h2.section-title.active {
     flex-direction: column;
 }
 
-.project-card:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0,0,0,0.05); /* Deeper, layered shadow */
-    transform: translateY(-6px) scale(1.01); /* Slight scale up along with lift */
-    border-color: var(--color-accent-light);
-    z-index: 10;
+/* Hover effects only on desktop */
+@media (hover: hover) {
+    .project-card:hover {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0,0,0,0.05);
+        transform: translateY(-6px) scale(1.01);
+        border-color: var(--color-accent-light);
+        z-index: 10;
+    }
 }
 
 .project-image {
@@ -987,10 +990,12 @@ h2.section-title.active {
     pointer-events: none;
 }
 
-.project-card:hover .project-image::after {
-    transform: translateY(100%);
-    transition: transform 0.6s;
-    opacity: 0.3;
+@media (hover: hover) {
+    .project-card:hover .project-image::after {
+        transform: translateY(100%);
+        transition: transform 0.6s;
+        opacity: 0.3;
+    }
 }
 
 .project-image img {
@@ -1000,8 +1005,10 @@ h2.section-title.active {
     transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1); /* Slower, smoother zoom */
 }
 
-.project-card:hover .project-image img {
-    transform: scale(1.08); /* More pronounced zoom */
+@media (hover: hover) {
+    .project-card:hover .project-image img {
+        transform: scale(1.08);
+    }
 }
 
 .project-content {
@@ -1013,8 +1020,10 @@ h2.section-title.active {
     transition: background-color 0.3s ease;
 }
 
-.project-card:hover .project-content {
-    background: var(--color-bg); /* Subtle bg shift on hover */
+@media (hover: hover) {
+    .project-card:hover .project-content {
+        background: var(--color-bg);
+    }
 }
 
 .project-title {
@@ -1032,8 +1041,10 @@ h2.section-title.active {
     line-height: 1.2;
 }
 
-.project-card:hover .project-title {
-    color: var(--color-accent);
+@media (hover: hover) {
+    .project-card:hover .project-title {
+        color: var(--color-accent);
+    }
 }
 
 /* Tech Stack Reveal - Expand Animation */
@@ -1239,32 +1250,35 @@ h2.section-title.active {
     z-index: 0;
 }
 
-.course-item:hover::before {
-    opacity: 0.15;
-}
-
 .course-item .course-info,
 .course-item .course-meta {
     position: relative;
     z-index: 1;
 }
 
-.course-item:hover {
-    border-color: var(--color-accent-light);
-}
+/* Hover effects only on desktop */
+@media (hover: hover) {
+    .course-item:hover::before {
+        opacity: 0.15;
+    }
 
-.course-item:hover .course-title {
-    font-weight: 700;
-    color: var(--color-text);
-}
+    .course-item:hover {
+        border-color: var(--color-accent-light);
+    }
 
-.course-item:hover .course-desc {
-    color: var(--color-text);
-}
+    .course-item:hover .course-title {
+        font-weight: 700;
+        color: var(--color-text);
+    }
 
-.course-item:hover .course-term {
-    color: var(--color-text-muted);
-    font-weight: 500;
+    .course-item:hover .course-desc {
+        color: var(--color-text);
+    }
+
+    .course-item:hover .course-term {
+        color: var(--color-text-muted);
+        font-weight: 500;
+    }
 }
 
 /* Individual course item backgrounds */
