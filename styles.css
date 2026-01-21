@@ -1060,9 +1060,8 @@ h2.section-title.active {
 
 /* Default styling for touch devices (hover: none) - Collapsed by default, expand on tap */
 @media (hover: none) {
-    /* Expand indicator chevron (shared style) */
-    .pub-item::after,
-    .project-card .project-content::after {
+    /* Expand indicator chevron for publications */
+    .pub-item::after {
         content: '';
         display: block;
         width: 20px;
@@ -1074,11 +1073,11 @@ h2.section-title.active {
         transition: transform 0.3s ease;
     }
     
-    .pub-item.expanded::after,
-    .project-card.expanded .project-content::after {
+    .pub-item.expanded::after {
         transform: rotate(180deg);
     }
     
+    /* Research card description expand */
     .project-card.expanded .project-desc {
         -webkit-line-clamp: unset;
         line-clamp: unset;
