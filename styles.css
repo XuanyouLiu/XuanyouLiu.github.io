@@ -810,14 +810,17 @@ h2.section-title.active {
 }
 
 
-.pub-item:hover {
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-    transform: translateY(-4px);
-    border-color: var(--color-accent-light);
-}
+/* Hover effects only on desktop */
+@media (hover: hover) {
+    .pub-item:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        transform: translateY(-4px);
+        border-color: var(--color-accent-light);
+    }
 
-.pub-item:hover .pub-title {
-    color: var(--color-accent);
+    .pub-item:hover .pub-title {
+        color: var(--color-accent);
+    }
 }
 
 /* Publication abstract */
