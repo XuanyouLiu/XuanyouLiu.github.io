@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initNavHighlight();
     initPublicationExpand();
+    initResearchExpand();
     initThemeToggle();
     initBackToTop();
     initSpotlightEffect();
@@ -195,6 +196,24 @@ function initPublicationExpand() {
         item.addEventListener('mouseleave', () => {
             if (!isMobileWidth()) {
                 item.classList.remove('expanded');
+            }
+        });
+    });
+}
+
+/**
+ * Research Card Expand Tags
+ * Mobile: tap to toggle tags visibility
+ */
+function initResearchExpand() {
+    const cards = document.querySelectorAll('.project-card');
+    
+    const isMobileWidth = () => window.innerWidth < 768;
+    
+    cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (isMobileWidth()) {
+                card.classList.toggle('expanded');
             }
         });
     });

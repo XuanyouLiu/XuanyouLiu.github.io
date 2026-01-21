@@ -1044,10 +1044,19 @@ h2.section-title.active {
     margin-top: 0;
 }
 
-/* Default styling for touch devices (hover: none) - Hidden to keep it clean */
+/* Default styling for touch devices (hover: none) - Collapsed by default, expand on tap */
 @media (hover: none) {
     .project-tags {
-        display: none;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease;
+    }
+    
+    .project-card.expanded .project-tags {
+        max-height: 200px;
+        opacity: 1;
+        margin-top: var(--space-md);
     }
 }
 
@@ -1059,15 +1068,15 @@ h2.section-title.active {
         opacity: 0;
         overflow: hidden;
         
-        /* Smooth expansion */
-        transition: max-height 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
-                    opacity 0.4s ease 0.1s, /* Delay opacity slightly */
-                    margin-top 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        /* Sync with description animation */
+        transition: max-height 0.35s ease,
+                    opacity 0.35s ease,
+                    margin-top 0.35s ease;
     }
 
     .project-card:hover .project-tags {
         /* Expanded state */
-        max-height: 200px; /* Safer max-height */
+        max-height: 200px;
         opacity: 1;
         margin-top: var(--space-md);
     }
@@ -1166,14 +1175,16 @@ h2.section-title.active {
     color: var(--color-text-muted);
     margin-bottom: var(--space-md);
     
-    /* Enforce uniform height for alignment */
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* Show exactly 3 lines */
-    line-clamp: 3; /* Standard property */
-    -webkit-box-orient: vertical;
+    /* Use max-height for smooth animation */
+    max-height: 4.5em; /* ~3 lines */
     overflow: hidden;
-    height: 4.5em; /* Fallback/Fixed height for alignment (1.5 line-height * 3) */
-    line-height: 1.5;
+    transition: max-height 0.35s ease;
+}
+
+/* Expand description on hover (desktop) or tap (mobile) */
+.project-card:hover .project-desc,
+.project-card.expanded .project-desc {
+    max-height: 500px; /* Large enough for full content */
 }
 
 .project-link {
@@ -1577,13 +1588,14 @@ h2.section-title.active {
     
     .project-desc {
         font-size: 0.9rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        line-clamp: 3; /* Standard property */
-        -webkit-box-orient: vertical;
+        max-height: 4.5em; /* ~3 lines */
         overflow: hidden;
         margin-bottom: 0;
-        height: auto; /* Let height be auto on mobile for better fit */
+        transition: max-height 0.35s ease;
+    }
+    
+    .project-card.expanded .project-desc {
+        max-height: 500px;
     }
     
     /* .project-tags style is handled by (hover: none) media query above */
