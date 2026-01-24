@@ -287,9 +287,25 @@ function initLanguageToggle() {
     const savedLang = localStorage.getItem('lang');
     
     if (savedLang) {
+        // Use saved preference
         document.documentElement.setAttribute('data-lang', savedLang);
         applyLanguage(savedLang);
+    } else {
+        // Auto-detect browser language: Chinese users see Chinese, others see English
+        const browserLang = navigator.language || navigator.userLanguage || 'en';
+        const isChineseUser = browserLang.toLowerCase().startsWith('zh');
+        const defaultLang = isChineseUser ? 'zh' : 'en';
+        
+        if (defaultLang === 'zh') {
+            document.documentElement.setAttribute('data-lang', 'zh');
+            applyLanguage('zh');
+        }
+        // For English, no need to apply since it's the default HTML content
     }
+    
+    // Update button title based on current language
+    const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
+    langToggle.title = currentLang === 'en' ? '切换到中文' : 'Switch to English';
     
     langToggle.addEventListener('click', () => {
         const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
@@ -299,7 +315,7 @@ function initLanguageToggle() {
         localStorage.setItem('lang', newLang);
         
         // Update button title
-        langToggle.title = newLang === 'en' ? 'Switch to Chinese' : '切换到英文';
+        langToggle.title = newLang === 'en' ? '切换到中文' : 'Switch to English';
         
         applyLanguage(newLang);
     });
