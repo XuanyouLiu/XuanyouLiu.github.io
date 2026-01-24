@@ -1502,6 +1502,26 @@ h2.section-title.active {
     margin: 0 auto;
 }
 
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-md);
+}
+
+.footer-icon {
+    color: var(--color-text-light);
+    transition: all var(--transition-fast);
+    padding: var(--space-xs);
+    opacity: 0.7;
+}
+
+.footer-icon:hover {
+    color: var(--color-accent);
+    transform: translateY(-2px);
+    opacity: 1;
+}
+
 .footer p {
     font-size: 0.875rem;
     color: var(--color-text-muted);
