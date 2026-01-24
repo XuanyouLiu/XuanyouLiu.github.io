@@ -71,7 +71,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap&font-display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap&font-display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     
     <!-- Google Analytics -->
@@ -91,32 +91,38 @@
         <div class="nav-inner">
             <a href="#" class="nav-logo">XL</a>
             <div class="nav-links">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#publications" class="nav-link">Publications</a>
-                <a href="#research" class="nav-link">Research</a>
-                <a href="#teaching" class="nav-link">Teaching</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#about" class="nav-link" data-en="About" data-zh="关于">About</a>
+                <a href="#publications" class="nav-link" data-en="Publications" data-zh="论文">Publications</a>
+                <a href="#research" class="nav-link" data-en="Research" data-zh="研究">Research</a>
+                <a href="#teaching" class="nav-link" data-en="Teaching" data-zh="教学">Teaching</a>
+                <a href="#contact" class="nav-link" data-en="Contact" data-zh="联系">Contact</a>
             </div>
-            <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
-                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="5"/>
-                    <line x1="12" y1="1" x2="12" y2="3"/>
-                    <line x1="12" y1="21" x2="12" y2="23"/>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                    <line x1="1" y1="12" x2="3" y2="12"/>
-                    <line x1="21" y1="12" x2="23" y2="12"/>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                </svg>
-                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                </svg>
-            </button>
-            <button class="nav-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-            </button>
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+                <button class="lang-toggle" aria-label="Switch language" title="Switch to Chinese">
+                    <span class="lang-en">EN</span>
+                    <span class="lang-zh">中</span>
+                </button>
+                <button class="nav-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -129,26 +135,26 @@
                 </div>
             </div>
             <div class="hero-text">
-                <p class="hero-greeting">Hello, I'm</p>
-                <h1 class="hero-name">Xuanyou Liu <span style="font-size: 0.5em; font-weight: 400;">(Zed)</span></h1>
-                <p class="hero-title">Ph.D. Student in Computer Science</p>
-                <p class="hero-affiliation">Department of Computer Science<br>Northwestern University</p>
+                <p class="hero-greeting" data-en="Hello, I'm" data-zh="你好，我是">Hello, I'm</p>
+                <h1 class="hero-name" data-en="Xuanyou Liu" data-zh="刘炫佑">Xuanyou Liu <span style="font-size: 0.5em; font-weight: 400;">(Zed)</span></h1>
+                <p class="hero-title" data-en="Ph.D. Student in Computer Science" data-zh="计算机科学博士生">Ph.D. Student in Computer Science</p>
+                <p class="hero-affiliation" data-en="Department of Computer Science<br>Northwestern University" data-zh="美国西北大学（Northwestern）<br>计算机科学系">Department of Computer Science<br>Northwestern University</p>
                 <div class="hero-links">
                     <a href="mailto:xuanyou@u.northwestern.edu" class="btn btn-primary">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                             <polyline points="22,6 12,13 2,6"/>
                         </svg>
-                        Email
+                        <span data-en="Email" data-zh="邮件">Email</span>
                     </a>
-                    <a href="resume/Xuanyou_Liu_Resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                    <a href="resume-en/Xuanyou_Liu_Resume.pdf" class="btn btn-secondary cv-link" target="_blank" rel="noopener noreferrer" data-cv-en="resume-en/Xuanyou_Liu_Resume.pdf" data-cv-zh="resume-cn/Xuanyou_Liu_Resume_CN.pdf">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                             <polyline points="14 2 14 8 20 8"/>
                             <line x1="16" y1="13" x2="8" y2="13"/>
                             <line x1="16" y1="17" x2="8" y2="17"/>
                         </svg>
-                        CV
+                        <span data-en="CV" data-zh="简历">CV</span>
                     </a>
                     <a href="https://scholar.google.com/citations?user=FcQWVTYAAAAJ&hl=en" class="btn btn-icon" title="Google Scholar" target="_blank" rel="noopener noreferrer">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -169,7 +175,7 @@
             </div>
         </div>
         <div class="hero-scroll">
-            <span>Scroll to explore</span>
+            <span data-en="Scroll to explore" data-zh="向下滚动了解更多">Scroll to explore</span>
             <div class="scroll-line"></div>
         </div>
     </header>
@@ -177,20 +183,20 @@
     <main>
         <section id="about" class="section">
             <div class="section-inner">
-                <h2 class="section-title">About</h2>
+                <h2 class="section-title" data-en="About" data-zh="关于我">About</h2>
                 <div class="about-content">
                     <div class="about-text">
-                        <p class="lead">I design and build interactive systems that improve user experiences through novel sensing and haptic technologies.</p>
-                        <p>I am a Ph.D. student in Computer Science at <strong>Northwestern University</strong> (<a href="https://spice-lab.org" target="_blank" rel="noopener noreferrer">SPICE Lab</a>), advised by Prof. Karan Ahuja. My research lies at the intersection of <strong>human-computer interaction</strong>, <strong>wearable computing</strong>, and <strong>haptic interfaces</strong>.</p>
-                        <p>Before joining Northwestern, I worked at the University of Chicago (<a href="https://lab.plopes.org/" target="_blank" rel="noopener noreferrer">HCI Lab</a>) with Prof. Pedro Lopes. I received my M.S.E. in Robotics from the University of Pennsylvania (<a href="https://www.grasp.upenn.edu/" target="_blank" rel="noopener noreferrer">GRASP Lab</a>) and my B.E. in Industrial Design from Xi'an Jiaotong University.</p>
+                        <p class="lead" data-en="I design and build interactive systems that improve user experiences through novel sensing and haptic technologies." data-zh="我致力于设计和构建新型交互系统，利用创新的传感与触觉技术提升用户体验。">I design and build interactive systems that improve user experiences through novel sensing and haptic technologies.</p>
+                        <p data-en="I am a Ph.D. student in Computer Science at <strong>Northwestern University</strong> (<a href='https://spice-lab.org' target='_blank' rel='noopener noreferrer'>SPICE Lab</a>), advised by Prof. Karan Ahuja. My research lies at the intersection of <strong>human-computer interaction</strong>, <strong>wearable computing</strong>, and <strong>haptic interfaces</strong>." data-zh="我目前在西北大学（<a href='https://spice-lab.org' target='_blank' rel='noopener noreferrer'>SPICE Lab</a>）师从 Karan Ahuja 教授，攻读计算机科学博士学位。我的研究兴趣位于<strong>人机交互</strong>、<strong>可穿戴计算</strong>与<strong>触觉技术</strong>的交叉领域。">I am a Ph.D. student in Computer Science at <strong>Northwestern University</strong> (<a href="https://spice-lab.org" target="_blank" rel="noopener noreferrer">SPICE Lab</a>), advised by Prof. Karan Ahuja. My research lies at the intersection of <strong>human-computer interaction</strong>, <strong>wearable computing</strong>, and <strong>haptic interfaces</strong>.</p>
+                        <p data-en="Before joining Northwestern, I worked at the University of Chicago (<a href='https://lab.plopes.org/' target='_blank' rel='noopener noreferrer'>HCI Lab</a>) with Prof. Pedro Lopes. I received my M.S.E. in Robotics from the University of Pennsylvania (<a href='https://www.grasp.upenn.edu/' target='_blank' rel='noopener noreferrer'>GRASP Lab</a>) and my B.E. in Industrial Design from Xi'an Jiaotong University." data-zh="在此之前，我曾在芝加哥大学（<a href='https://lab.plopes.org/' target='_blank' rel='noopener noreferrer'>HCI Lab</a>）随 Pedro Lopes 教授从事研究。我硕士毕业于宾夕法尼亚大学（<a href='https://www.grasp.upenn.edu/' target='_blank' rel='noopener noreferrer'>GRASP Lab</a>）机器人学专业，本科毕业于西安交通大学工业设计专业。">Before joining Northwestern, I worked at the University of Chicago (<a href="https://lab.plopes.org/" target="_blank" rel="noopener noreferrer">HCI Lab</a>) with Prof. Pedro Lopes. I received my M.S.E. in Robotics from the University of Pennsylvania (<a href="https://www.grasp.upenn.edu/" target="_blank" rel="noopener noreferrer">GRASP Lab</a>) and my B.E. in Industrial Design from Xi'an Jiaotong University.</p>
                     </div>
                     <div class="about-news">
-                        <h3>News</h3>
+                        <h3 data-en="News" data-zh="最新动态">News</h3>
                         <ul class="news-list">
-                            <li><span class="news-date">Sep 2025</span> Started my Ph.D. at Northwestern University!</li>
-                            <li><span class="news-date">May 2025</span> Graduated from UPenn with M.S.E. in Robotics.</li>
-                            <li><span class="news-date">Jan 2025</span> Our paper "Seeing with the Hands" was accepted to CHI 2025!</li>
-                            <li><span class="news-date">May 2024</span> Presented TacTex at CHI 2024 in Honolulu, Hawaii.</li>
+                            <li><span class="news-date">Sep 2025</span> <span data-en="Started my Ph.D. at Northwestern University!" data-zh="正式加入西北大学，开始攻读博士学位！">Started my Ph.D. at Northwestern University!</span></li>
+                            <li><span class="news-date">May 2025</span> <span data-en="Graduated from UPenn with M.S.E. in Robotics." data-zh="从宾夕法尼亚大学毕业，获得机器人学硕士学位。">Graduated from UPenn with M.S.E. in Robotics.</span></li>
+                            <li><span class="news-date">Jan 2025</span> <span data-en='Our paper "Seeing with the Hands" was accepted to CHI 2025!' data-zh='论文《Seeing with the Hands》被 CHI 2025 接收！'>Our paper "Seeing with the Hands" was accepted to CHI 2025!</span></li>
+                            <li><span class="news-date">May 2024</span> <span data-en="Presented TacTex at CHI 2024 in Honolulu, Hawaii." data-zh="赴夏威夷参加 CHI 2024，展示论文 TacTex。">Presented TacTex at CHI 2024 in Honolulu, Hawaii.</span></li>
                         </ul>
                     </div>
                 </div>
@@ -199,8 +205,8 @@
 
         <section id="publications" class="section section-alt">
             <div class="section-inner">
-                <h2 class="section-title">Publications</h2>
-                <p class="section-subtitle">* denotes equal contribution</p>
+                <h2 class="section-title" data-en="Publications" data-zh="发表论文">Publications</h2>
+                <p class="section-subtitle" data-en="* denotes equal contribution" data-zh="* 代表共同第一作者">* denotes equal contribution</p>
                 
                 <div class="publications-list">
                     <article class="pub-item">
@@ -210,17 +216,17 @@
                                 <video src="Asset/Seeing_preview.mp4?v=2" muted loop playsinline preload="none"></video>
                             </div>
                             <div class="pub-content">
-                                <h3 class="pub-title">Seeing with the Hands: A Sensory Substitution That Supports Manual Interactions</h3>
+                                <h3 class="pub-title" data-en="Seeing with the Hands: A Sensory Substitution That Supports Manual Interactions" data-zh="Seeing with the Hands：支持手部交互的感官替代技术">Seeing with the Hands: A Sensory Substitution That Supports Manual Interactions</h3>
                                 <p class="pub-authors">Shan-Yuan Teng*, Gene Kim*, <strong>Xuanyou Liu*</strong>, Pedro Lopes</p>
                                 <p class="pub-venue">CHI 2025 | ACM Conference on Human Factors in Computing Systems</p>
                                 <div class="pub-links">
 <a href="Asset/SeeingWithTheHand.pdf" class="pub-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">PDF</a>
-                                <a href="Asset/Seeing.mp4" class="pub-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Video</a>
+                                <a href="Asset/Seeing.mp4" class="pub-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><span data-en="Video" data-zh="视频">Video</span></a>
                                 <a href="https://doi.org/10.1145/3706598.3713419" class="pub-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">DOI</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="pub-abstract">
+                        <div class="pub-abstract" data-en="Sensory substitution devices enable users to perceive visual information through other modalities, such as touch. However, most existing devices place the camera at the user's eyes (head-mounted), which limits the ability to coordinate manual interactions. We propose &quot;seeing and feeling&quot; from the hand's perspective to enhance the flexibility and expressivity of sensory substitution. To this end, we engineered a back-of-the-hand electrotactile display that renders tactile images from a wrist-mounted camera, allowing users to feel objects while reaching and hovering. In a user study with sighted and blind or low-vision participants, we compared our hand-centered perspective against traditional head-mounted views in manipulation tasks (e.g., handling bottles, soldering). Results indicate that while both perspectives yield comparable performance, participants preferred the flexibility of the hand's perspective, which supported more ergonomic object manipulation strategies." data-zh="感官替代设备能够让用户通过其他感官（如触觉）来感知视觉信息。然而，大多数现有设备将摄像头置于用户眼部（头戴式），限制了手部交互的协调能力。我们提出从“手部视角”进行感知，以增强感官替代的灵活性和表现力。为此，我们设计了一种手背电触觉显示器，能够将腕戴式摄像头捕捉的图像转化为触觉反馈，让用户在伸手或悬停时即能感知物体。在一项包含视力正常者及视障人士的用户研究中，我们对比了手部视角与传统头戴式视角在操作任务（如拿取瓶子、焊接）中的表现。结果显示，虽然两种视角的操作绩效相当，但参与者更偏好手部视角的灵活性，因为它支持更符合人体工学的物体操作策略。">
                             Sensory substitution devices enable users to perceive visual information through other modalities, such as touch. However, most existing devices place the camera at the user's eyes (head-mounted), which limits the ability to coordinate manual interactions. We propose "seeing and feeling" from the hand's perspective to enhance the flexibility and expressivity of sensory substitution. To this end, we engineered a back-of-the-hand electrotactile display that renders tactile images from a wrist-mounted camera, allowing users to feel objects while reaching and hovering. In a user study with sighted and blind or low-vision participants, we compared our hand-centered perspective against traditional head-mounted views in manipulation tasks (e.g., handling bottles, soldering). Results indicate that while both perspectives yield comparable performance, participants preferred the flexibility of the hand's perspective, which supported more ergonomic object manipulation strategies.
                         </div>
                     </article>
@@ -232,17 +238,17 @@
                                 <video src="Asset/TacTex_preview.mp4?v=2" muted loop playsinline preload="none"></video>
                             </div>
                             <div class="pub-content">
-                                <h3 class="pub-title">TacTex: A Textile Interface with Seamlessly-Integrated Electrodes for High-Resolution Electrotactile Stimulation</h3>
+                                <h3 class="pub-title" data-en="TacTex: A Textile Interface with Seamlessly-Integrated Electrodes for High-Resolution Electrotactile Stimulation" data-zh="TacTex：无缝集成电极的高分辨率电触觉纺织界面">TacTex: A Textile Interface with Seamlessly-Integrated Electrodes for High-Resolution Electrotactile Stimulation</h3>
                                 <p class="pub-authors">Hongnan Lin, <strong>Xuanyou Liu</strong>, Shengsheng Jiang, Qi Wang, Ye Tao, Guanyun Wang, Wei Sun, Teng Han, Feng Tian</p>
                                 <p class="pub-venue">CHI 2024 | ACM Conference on Human Factors in Computing Systems</p>
                                 <div class="pub-links">
 <a href="Asset/TacTex.pdf" class="pub-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">PDF</a>
-                                <a href="Asset/TacTex.mp4" class="pub-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Video</a>
+                                <a href="Asset/TacTex.mp4" class="pub-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><span data-en="Video" data-zh="视频">Video</span></a>
                                 <a href="https://doi.org/10.1145/3613904.3642873" class="pub-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">DOI</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="pub-abstract">
+                        <div class="pub-abstract" data-en="Electrotactile stimulation offers a promising path for high-resolution wearable haptics but has traditionally struggled with integration into soft, everyday textiles. We present TacTex, a textile interface that seamlessly integrates high-density haptic feedback and touch sensing. By employing a novel multi-layer woven structure that separates conductive electrodes with non-conductive yarns, TacTex achieves a sensing and actuation resolution of 512 × 512 with electrode spacing as small as 2mm. The system includes a custom driving board that enables precise spatial and temporal control of electrical stimuli while simultaneously monitoring voltage changes for touch tracking. Our technical evaluation and user studies demonstrate that TacTex can render a wide range of haptic effects, including complex static and dynamic patterns, effectively bringing high-fidelity haptic feedback to everyday clothing." data-zh="电触觉刺激为高分辨率可穿戴触觉技术提供了一条极具潜力的路径，但传统方案难以将其集成到柔软的日常纺织品中。我们提出了 TacTex，一种无缝集成高密度触觉反馈与触摸感应的纺织界面。通过采用新颖的多层编织结构，利用非导电纱线分隔导电电极，TacTex 实现了 512×512 的感应与驱动分辨率，电极间距仅为 2mm。该系统包含定制驱动电路，能够对电刺激进行精确的时空控制，同时监测电压变化以实现触摸追踪。技术评估与用户研究表明，TacTex 能够呈现包括复杂静态及动态图案在内的多种触觉效果，有效地将高保真触觉反馈引入日常服装之中。">
                             Electrotactile stimulation offers a promising path for high-resolution wearable haptics but has traditionally struggled with integration into soft, everyday textiles. We present TacTex, a textile interface that seamlessly integrates high-density haptic feedback and touch sensing. By employing a novel multi-layer woven structure that separates conductive electrodes with non-conductive yarns, TacTex achieves a sensing and actuation resolution of 512 × 512 with electrode spacing as small as 2mm. The system includes a custom driving board that enables precise spatial and temporal control of electrical stimuli while simultaneously monitoring voltage changes for touch tracking. Our technical evaluation and user studies demonstrate that TacTex can render a wide range of haptic effects, including complex static and dynamic patterns, effectively bringing high-fidelity haptic feedback to everyday clothing.
                         </div>
                     </article>
@@ -252,7 +258,7 @@
 
         <section id="research" class="section section-alt">
             <div class="section-inner">
-                <h2 class="section-title">Research</h2>
+                <h2 class="section-title" data-en="Research" data-zh="研究方向">Research</h2>
                 
                 <div class="projects-grid">
                     <article class="project-card">
@@ -260,12 +266,12 @@
                             <img src="Asset/CompactHaptics.png" alt="Wearable Haptics" loading="lazy">
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">Wearable Haptics</h3>
-                            <p class="project-desc">Developing compact, high-resolution electrotactile interfaces that deliver rich tactile feedback through the skin, enabling new forms of sensory augmentation and communication for wearable devices.</p>
+                            <h3 class="project-title" data-en="Wearable Haptics" data-zh="可穿戴触觉技术">Wearable Haptics</h3>
+                            <p class="project-desc" data-en="Developing compact, high-resolution electrotactile interfaces that deliver rich tactile feedback through the skin, enabling new forms of sensory augmentation and communication for wearable devices." data-zh="开发紧凑、高分辨率的电触觉界面，通过皮肤传递丰富的触觉反馈，为可穿戴设备实现新形式的感官增强与交互通信。">Developing compact, high-resolution electrotactile interfaces that deliver rich tactile feedback through the skin, enabling new forms of sensory augmentation and communication for wearable devices.</p>
                             <div class="project-tags">
-                                <span class="tag-uchicago">UChicago</span>
-                                <span>Haptics</span>
-                                <span>Wearables</span>
+                                <span class="tag-uchicago" data-en="UChicago" data-zh="芝加哥大学">UChicago</span>
+                                <span data-en="Haptics" data-zh="触觉技术">Haptics</span>
+                                <span data-en="Wearables" data-zh="可穿戴设备">Wearables</span>
                             </div>
                         </div>
                     </article>
@@ -275,12 +281,12 @@
                             <img src="Asset/EIT.png" alt="EIT for Hand Estimation" loading="lazy">
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">EIT for Hand Estimation</h3>
-                            <p class="project-desc">Exploring Electrical Impedance Tomography (EIT) as a novel sensing modality for continuous hand pose estimation, enabling low-power, unobtrusive input for interactive systems.</p>
+                            <h3 class="project-title" data-en="EIT for Hand Estimation" data-zh="基于 EIT 的手势估计">EIT for Hand Estimation</h3>
+                            <p class="project-desc" data-en="Exploring Electrical Impedance Tomography (EIT) as a novel sensing modality for continuous hand pose estimation, enabling low-power, unobtrusive input for interactive systems." data-zh="探索将电阻抗断层成像（EIT）作为一种新型传感方式，用于连续手部姿态估计，为交互系统提供低功耗、非侵入式的输入方案。">Exploring Electrical Impedance Tomography (EIT) as a novel sensing modality for continuous hand pose estimation, enabling low-power, unobtrusive input for interactive systems.</p>
                             <div class="project-tags">
-                                <span class="tag-northwestern">Northwestern</span>
+                                <span class="tag-northwestern" data-en="Northwestern" data-zh="西北大学">Northwestern</span>
                                 <span>EIT</span>
-                                <span>Machine Learning</span>
+                                <span data-en="Machine Learning" data-zh="机器学习">Machine Learning</span>
                             </div>
                         </div>
                     </article>
@@ -290,12 +296,12 @@
                             <img src="Asset/Topology.png" alt="Reconfigurable Robotics" loading="lazy">
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">Reconfigurable Robotics</h3>
-                            <p class="project-desc">Investigating variable topology truss robots that can dynamically change their structure to adapt to different tasks, environments, and locomotion modes.</p>
+                            <h3 class="project-title" data-en="Reconfigurable Robotics" data-zh="可重构机器人">Reconfigurable Robotics</h3>
+                            <p class="project-desc" data-en="Investigating variable topology truss robots that can dynamically change their structure to adapt to different tasks, environments, and locomotion modes." data-zh="研究可变拓扑桁架机器人，使其能够动态改变结构以适应不同的任务、环境和运动模式。">Investigating variable topology truss robots that can dynamically change their structure to adapt to different tasks, environments, and locomotion modes.</p>
                             <div class="project-tags">
-                                <span class="tag-upenn">UPenn</span>
-                                <span>Robotics</span>
-                                <span>Mechanism</span>
+                                <span class="tag-upenn" data-en="UPenn" data-zh="宾夕法尼亚大学">UPenn</span>
+                                <span data-en="Robotics" data-zh="机器人">Robotics</span>
+                                <span data-en="Mechanism" data-zh="机械结构">Mechanism</span>
                             </div>
                         </div>
                     </article>
@@ -305,23 +311,23 @@
 
         <section id="teaching" class="section">
             <div class="section-inner">
-                <h2 class="section-title">Teaching & Leadership</h2>
+                <h2 class="section-title" data-en="Teaching & Leadership" data-zh="教学与领导力">Teaching & Leadership</h2>
                 
                 <div class="teaching-list">
                     <div class="course-item" data-hover-image="Asset/upenn.png" data-org-name="University of Pennsylvania">
                         <div class="course-info">
-                            <h3 class="course-title">Teaching Assistant: ESE5190 Smart Devices</h3>
-                            <p class="course-desc">Graduate course at University of Pennsylvania covering embedded systems, IoT, and smart device development.</p>
+                            <h3 class="course-title" data-en="Teaching Assistant: ESE5190 Smart Devices" data-zh="助教：ESE5190 智能设备 (Smart Devices)">Teaching Assistant: ESE5190 Smart Devices</h3>
+                            <p class="course-desc" data-en="Graduate course at University of Pennsylvania covering embedded systems, IoT, and smart device development." data-zh="宾夕法尼亚大学研究生课程，内容涵盖嵌入式系统、物联网及智能设备开发。">Graduate course at University of Pennsylvania covering embedded systems, IoT, and smart device development.</p>
                         </div>
                         <div class="course-meta">
-                            <span class="course-term">University of Pennsylvania</span>
+                            <span class="course-term" data-en="University of Pennsylvania" data-zh="宾夕法尼亚大学">University of Pennsylvania</span>
                         </div>
                     </div>
 
                     <div class="course-item" data-hover-image="Asset/fife-penn.png" data-org-name="Fife-Penn CS Academy">
                         <div class="course-info">
-                            <h3 class="course-title">Code Instructor</h3>
-                            <p class="course-desc">Teaching Python & Arduino programming fundamentals to middle school students at Fife-Penn CS Academy.</p>
+                            <h3 class="course-title" data-en="Code Instructor" data-zh="编程讲师">Code Instructor</h3>
+                            <p class="course-desc" data-en="Teaching Python & Arduino programming fundamentals to middle school students at Fife-Penn CS Academy." data-zh="在 Fife-Penn CS Academy 为中学生讲授 Python 与 Arduino 编程基础。">Teaching Python & Arduino programming fundamentals to middle school students at Fife-Penn CS Academy.</p>
                         </div>
                         <div class="course-meta">
                             <span class="course-term">Fife-Penn CS Academy</span>
@@ -330,11 +336,11 @@
 
                     <div class="course-item" data-hover-image="Asset/ilo.png" data-org-name="International Labour Organization">
                         <div class="course-info">
-                            <h3 class="course-title">Student Representative</h3>
-                            <p class="course-desc">Represented students at the Global Youth Forum 2021, organized by the International Labor Organization.</p>
+                            <h3 class="course-title" data-en="Student Representative" data-zh="学生代表">Student Representative</h3>
+                            <p class="course-desc" data-en="Represented students at the Global Youth Forum 2021, organized by the International Labor Organization." data-zh="代表西安交通大学参加国际劳工组织（ILO）举办的 2021 年全球青年论坛。">Represented students at the Global Youth Forum 2021, organized by the International Labor Organization.</p>
                         </div>
                         <div class="course-meta">
-                            <span class="course-term">ILO Global Youth Forum 2021</span>
+                            <span class="course-term" data-en="ILO Global Youth Forum 2021" data-zh="ILO 全球青年论坛 2021">ILO Global Youth Forum 2021</span>
                         </div>
                     </div>
 
@@ -345,11 +351,11 @@
 
         <section id="contact" class="section section-alt">
             <div class="section-inner">
-                <h2 class="section-title">Contact</h2>
+                <h2 class="section-title" data-en="Contact" data-zh="联系方式">Contact</h2>
                 
                 <div class="contact-content">
                     <div class="contact-info">
-                        <p class="contact-lead">I'm always happy to chat about research, potential collaborations, or just to connect!</p>
+                        <p class="contact-lead" data-en="I'm always happy to chat about research, potential collaborations, or just to connect!" data-zh="非常欢迎讨论学术研究、潜在合作，或进行即兴交流！">I'm always happy to chat about research, potential collaborations, or just to connect!</p>
                         
                         <div class="contact-details">
                             <div class="contact-item">
@@ -364,14 +370,14 @@
                                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                                     <circle cx="12" cy="10" r="3"/>
                                 </svg>
-                                <span>Room 3546, Mudd Building<br>Department of Computer Science<br>Northwestern University<br>Evanston, IL</span>
+                                <span data-en="Room 3546, Mudd Building<br>Department of Computer Science<br>Northwestern University<br>Evanston, IL" data-zh="MUD图书馆，3546室<br>计算机科学系<br>西北大学<br>埃文斯顿, 伊利诺伊州">Room 3546, Mudd Building<br>Department of Computer Science<br>Northwestern University<br>Evanston, IL</span>
                             </div>
                         </div>
                     </div>
                     
                     <div class="contact-note">
-                        <h3>Let's Connect</h3>
-                        <p>Feel free to reach out if you're interested in novel sensing & haptic technologies in HCI. I'm also happy to discuss potential research collaborations or just have a casual chat about the field!</p>
+                        <h3 data-en="Let's Connect" data-zh="欢迎联系">Let's Connect</h3>
+                        <p data-en="Feel free to reach out if you're interested in novel sensing & haptic technologies in HCI. I'm also happy to discuss potential research collaborations or just have a casual chat about the field!" data-zh="如果您对人机交互领域的新型传感和触觉技术感兴趣，欢迎随时与我联系。我也很乐意讨论潜在的研究合作，或者交流对相关领域的看法！">Feel free to reach out if you're interested in novel sensing & haptic technologies in HCI. I'm also happy to discuss potential research collaborations or just have a casual chat about the field!</p>
                     </div>
                 </div>
             </div>
@@ -409,8 +415,8 @@
                     </svg>
                 </a>
             </div>
-            <p>© 2026 Xuanyou Liu. All rights reserved.</p>
-            <p class="footer-note">Last updated: January 2026</p>
+            <p data-en="© 2026 Xuanyou Liu. All rights reserved." data-zh="© 2026 刘炫佑. 保留所有权利.">© 2026 Xuanyou Liu. All rights reserved.</p>
+            <p class="footer-note" data-en="Last updated: January 2026" data-zh="最后更新：2026 年 1 月">Last updated: January 2026</p>
         </div>
     </footer>
 

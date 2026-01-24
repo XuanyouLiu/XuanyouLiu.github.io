@@ -18,9 +18,13 @@
     --color-border: #e0e0e0;
     --color-border-light: #eeeeee;
     
-    /* Typography - Northwestern Style Alignment */
-    --font-serif: 'Merriweather', Georgia, 'Times New Roman', serif; /* Updated to Merriweather for authoritative academic look */
-    --font-sans: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    /* Typography - Apple Style Minimalist */
+    /* English headings: Merriweather (Retaining academic identity) */
+    /* Chinese headings: PingFang SC / Sans-serif (Apple minimalist style - no Serif for Chinese) */
+    --font-serif: 'Merriweather', -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    
+    /* Body text: SF Pro / PingFang (Apple native feel) */
+    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
     
     /* Spacing - more compact */
     --space-xs: 0.25rem;
@@ -242,6 +246,13 @@ strong {
     margin-right: var(--space-lg);
 }
 
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-shrink: 0;
+}
+
 .nav-logo {
     font-family: var(--font-serif); /* Uses Merriweather now */
     font-size: 1.5rem;
@@ -299,6 +310,46 @@ strong {
 .theme-toggle:hover {
     background-color: var(--color-bg-alt);
     border-color: var(--color-accent);
+}
+
+/* Language Toggle Button */
+.lang-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--color-text);
+    transition: all var(--transition-base);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.lang-toggle:hover {
+    background-color: var(--color-bg-alt);
+    border-color: var(--color-accent);
+}
+
+/* Default: show 中 (to switch to Chinese) */
+.lang-toggle .lang-en {
+    display: none;
+}
+
+.lang-toggle .lang-zh {
+    display: block;
+}
+
+/* When Chinese is active, show EN (to switch to English) */
+[data-lang="zh"] .lang-toggle .lang-en {
+    display: block;
+}
+
+[data-lang="zh"] .lang-toggle .lang-zh {
+    display: none;
 }
 
 .theme-toggle .sun-icon {
@@ -634,22 +685,6 @@ h2.section-title.active {
 
 .section-title.active::after {
     width: 100%;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 60px;
-    height: 4px; /* Thicker line for better visual balance with Merriweather */
-    background-color: var(--color-accent);
-    transition: width 0.5s ease;
-    border-radius: 2px;
-}
-
-.section-title.active::after {
-    width: 100%; /* Line grows to cover full width */
 }
 
 .section-subtitle {
@@ -1655,29 +1690,24 @@ h2.section-title.active {
         display: flex;
     }
     
-    /* Reorder nav-inner for mobile: logo, toggle, theme on one line; links below */
+    /* Mobile nav layout: logo on left, controls on right, links below */
     .nav-inner {
         flex-wrap: wrap;
     }
     
     .nav-inner .nav-logo {
-        order: 1;
+        flex-shrink: 0;
     }
     
     .nav-inner .nav-links {
-        order: 4;
+        order: 3;
         width: 100%;
         flex-basis: 100%;
     }
     
-    .nav-inner .theme-toggle {
+    .nav-inner .nav-controls {
         order: 2;
         margin-left: auto;
-    }
-    
-    .nav-inner .nav-toggle {
-        order: 3;
-        margin-left: var(--space-sm);
     }
     
     .pub-main {

@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPublicationExpand();
     initResearchExpand();
     initThemeToggle();
+    initLanguageToggle();
     initBackToTop();
     initSpotlightEffect();
     initVideoPreview();
@@ -272,6 +273,75 @@ function initThemeToggle() {
             // Theme will auto-update via CSS media query
         }
     });
+}
+
+/**
+ * Language Toggle (English/Chinese)
+ */
+function initLanguageToggle() {
+    const langToggle = document.querySelector('.lang-toggle');
+    
+    if (!langToggle) return;
+    
+    // Check for saved language preference
+    const savedLang = localStorage.getItem('lang');
+    
+    if (savedLang) {
+        document.documentElement.setAttribute('data-lang', savedLang);
+        applyLanguage(savedLang);
+    }
+    
+    langToggle.addEventListener('click', () => {
+        const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
+        const newLang = currentLang === 'en' ? 'zh' : 'en';
+        
+        document.documentElement.setAttribute('data-lang', newLang);
+        localStorage.setItem('lang', newLang);
+        
+        // Update button title
+        langToggle.title = newLang === 'en' ? 'Switch to Chinese' : '切换到英文';
+        
+        applyLanguage(newLang);
+    });
+}
+
+/**
+ * Apply language to all elements with data-en and data-zh attributes
+ */
+function applyLanguage(lang) {
+    const elements = document.querySelectorAll('[data-en][data-zh]');
+    
+    elements.forEach(el => {
+        const text = el.getAttribute(`data-${lang}`);
+        if (text) {
+            // Use innerHTML to preserve HTML tags like <br>, <strong>, <a>
+            el.innerHTML = text;
+        }
+    });
+    
+    // Handle special case for hero-name with the (Zed) suffix
+    const heroName = document.querySelector('.hero-name');
+    if (heroName) {
+        const baseName = heroName.getAttribute(`data-${lang}`);
+        if (baseName) {
+            heroName.innerHTML = baseName + ' <span style="font-size: 0.5em; font-weight: 400;">(Zed)</span>';
+        }
+    }
+    
+    // Handle CV link - switch between English and Chinese resume
+    const cvLink = document.querySelector('.cv-link');
+    if (cvLink) {
+        const cvUrl = lang === 'zh' ? cvLink.getAttribute('data-cv-zh') : cvLink.getAttribute('data-cv-en');
+        if (cvUrl) {
+            cvLink.href = cvUrl;
+        }
+    }
+    
+    // Update page title
+    document.title = lang === 'zh' ? '刘炫佑 | 人机交互研究者' : 'Xuanyou Liu | HCI Researcher';
+    
+    // Update html lang attribute
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
 }
 
 /**

@@ -1,0 +1,67 @@
+{
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "pdflatex",
+            "tools": ["pdflatex", "pdflatex"]
+        },
+        {
+            "name": "xelatex",
+            "tools": ["xelatex", "xelatex"]
+        },
+        {
+            "name": "latexmk (xelatex)",
+            "tools": ["latexmk_xelatex"]
+        },
+        {
+            "name": "latexmk (pdflatex)",
+            "tools": ["latexmk_pdflatex"]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "xelatex",
+            "command": "xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "latexmk_xelatex",
+            "command": "latexmk",
+            "args": [
+                "-xelatex",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "latexmk_pdflatex",
+            "command": "latexmk",
+            "args": [
+                "-pdf",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipe.default": "first",
+    "latex-workshop.latex.rootFile.useSubFile": false,
+    "latex-workshop.latex.rootFile.doNotPrompt": true
+}
