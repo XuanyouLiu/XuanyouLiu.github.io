@@ -93,7 +93,7 @@
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
                           (window.matchMedia('(prefers-color-scheme: dark)').matches && 
                            document.documentElement.getAttribute('data-theme') !== 'light');
-            const color = isDark ? '180, 170, 160' : '140, 130, 115';
+            const color = isDark ? '160, 160, 160' : '120, 120, 130';
             ctx.strokeStyle = `rgba(${color}, ${this.opacity})`;
             ctx.lineWidth = 1;
             
@@ -153,7 +153,7 @@
                     const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
                               (window.matchMedia('(prefers-color-scheme: dark)').matches && 
                                document.documentElement.getAttribute('data-theme') !== 'light');
-                    const color = isDark ? '180, 170, 160' : '140, 130, 115';
+                    const color = isDark ? '160, 160, 160' : '120, 120, 130';
                     ctx.strokeStyle = `rgba(${color}, ${opacity})`;
                     ctx.lineWidth = 1;
                     ctx.stroke();

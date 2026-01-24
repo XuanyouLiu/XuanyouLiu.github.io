@@ -1,0 +1,197 @@
+%-------------------------
+% Northwestern Style Resume - Modern & Clean
+% Author: Xuanyou (Zed) Liu
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{geometry}
+
+% -------------------- FONT OPTIONS --------------------
+% sans-serif font for a more modern, clean look
+\usepackage[sfdefault]{roboto}  % Roboto font
+\usepackage[T1]{fontenc}
+
+% -------------------- PAGE LAYOUT --------------------
+\geometry{left=0.5in, top=0.5in, right=0.5in, bottom=0.5in}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.15in}
+\addtolength{\textwidth}{0.3in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% -------------------- COLORS --------------------
+% Northwestern Purple
+\definecolor{NUPurple}{HTML}{4E2A84}
+% Darker text for better readability
+\definecolor{DarkText}{HTML}{1a1a1a}
+\definecolor{GrayText}{HTML}{555555}
+
+% -------------------- SECTION FORMATTING --------------------
+\titleformat{\section}{
+  \vspace{-6pt}\scshape\raggedright\Large\color{NUPurple}\bfseries
+}{}{0em}{}[\color{NUPurple}\titlerule \vspace{-4pt}]
+
+% -------------------- CUSTOM COMMANDS --------------------
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textit{\small \color{GrayText} #2} \\
+      \textit{\small #3} & \textit{\small \color{GrayText} #4} \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.98\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textit{\small \color{GrayText} #2} \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-3pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.1in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.2in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-4pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% -------------------- HEADING --------------------
+\begin{center}
+    {\Huge \scshape \bfseries \color{NUPurple} Xuanyou (Zed) Liu} \\[6pt]
+    \small 
+    \faMapMarker* Evanston, IL \quad 
+    \faPhone\ (+1) 267-809-0364 \quad
+    \faEnvelope\ \href{mailto:xuanyou@u.northwestern.edu}{xuanyou@u.northwestern.edu} \quad
+    \faGlobe\ \href{https://xuanyouliu.com}{xuanyouliu.com}
+\end{center}
+\vspace{4pt}
+
+% -------------------- EDUCATION --------------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Northwestern University}{Evanston, USA}
+      {Ph.D. in Computer Science \textnormal{\textbar\ \textit{Advisor: Prof. Karan Ahuja}}}{Sep 2025 -- 2030 (expected)}
+      \resumeItemListStart
+        \resumeItem{\textbf{Research Focus:} Human Computer Interaction (HCI)}
+        \resumeItem{\textbf{Honors:} TGS First-Year Fellowship}
+      \resumeItemListEnd
+      
+    \resumeSubheading
+      {University of Pennsylvania}{Philadelphia, USA}
+      {M.S.E. in Robotics \textnormal{\textbar\ \textit{GPA: 4.00/4.00, Rank: 1/64}}}{Sep 2023 -- May 2025}
+      \resumeItemListStart
+         \resumeItem{\textbf{Honors:} GAPSA Professional Student Travel Award (2025)}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Xi'an Jiaotong University}{Xi'an, China}
+      {B.E. in Industrial Design \textnormal{\textbar\ \textit{GPA: 3.86/4.30, Rank: 1/21}}}{Sep 2019 -- Jul 2023}
+      \resumeItemListStart
+        \resumeItem{\textbf{Honors:} Outstanding Graduate, Outstanding Student Leader}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+% -------------------- PUBLICATIONS --------------------
+\section{Selected Publications}
+  \resumeSubHeadingListStart
+    \resumeProjectHeading
+      {\textbf{Seeing with the Hands: A Sensory Substitution That Supports Manual Interactions}}{CHI 2025}
+      \resumeItemListStart
+        \resumeItem{Shan-Yuan Teng*, Gene Kim*, \textbf{\color{NUPurple} Xuanyou Liu*}, Pedro Lopez (*equal contribution)}
+        \resumeItem{Conference on Human Factors in Computing Systems (CHI) \href{https://doi.org/10.1145/3613904.3642063}{\color{NUPurple}\faExternalLink*}}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{TacTex: A Textile Interface with Seamlessly-Integrated Electrodes}}{CHI 2024}
+      \resumeItemListStart
+        \resumeItem{Hongnan Lin, \textbf{\color{NUPurple} Xuanyou Liu}, Shengsheng Jiang, Qi Wang, Ye Tao, et al.}
+        \resumeItem{Conference on Human Factors in Computing Systems (CHI) \href{https://doi.org/10.1145/3613904.3642063}{\color{NUPurple}\faExternalLink*}}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+% -------------------- PROJECTS --------------------
+\section{Projects}
+  \resumeSubHeadingListStart
+    \resumeProjectHeading
+      {\textbf{Robust EIT Sensing with Transformer Learning} $|$ \emph{Northwestern University}}{Sep 2025 -- Present}
+      \resumeItemListStart
+        \resumeItem{Built a transformer-based contrastive learning model to resolve EIT signal drift across users and arm poses.}
+        \resumeItem{Designed a compact PCB and implemented real-time firmware using RTOS for high-frequency bio-impedance sensing.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{Compact Electrotactile Module for Wearable Haptics} $|$ \emph{UPenn Independent Study}}{Aug 2024 -- Dec 2024}
+      \resumeItemListStart
+        \resumeItem{Developed a miniaturized electrotactile stimulation module for high-fidelity haptic feedback in wearables.}
+        \resumeItem{Designed custom PCB and firmware for real-time control and integration with VR environments.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{Ins-Bucks Food 3D Printer} $|$ \emph{RCA-Imperial Design Competition}}{Jun 2021 -- Jul 2021}
+      \resumeItemListStart
+        \resumeItem{Designed an insect-based 3D food printing service ecosystem integrating hardware, UI, and service blueprints.}
+        \resumeItem{Received \textbf{Most Innovative Award} for the novel application of sustainable protein in personalized nutrition.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+% -------------------- EXPERIENCE --------------------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Luxottica Tristar Optical Co., Ltd.}{Dongguan, China}
+      {R\&D Intern, Component Factory}{Jul 2020 -- Sep 2020}
+      \resumeItemListStart
+        \resumeItem{Enhanced lost-wax casting processes by optimizing temperature parameters, reducing defect rate by 15\%.}
+        \resumeItem{Refactored Ladder Logic code for the production line PLC, improving cycle time efficiency.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+% -------------------- SKILLS & AWARDS --------------------
+\section{Skills \& Leadership}
+  \resumeSubHeadingListStart
+    \item{
+      \textbf{Leadership:} Teaching Assistant (Smart Devices), UNICEF Volunteer, Code Instructor (Fife-Penn) \\
+      \vspace{3pt}
+      \textbf{Skills:} HCI, Haptics, Robotics, PCB Design, CAD (SolidWorks), Python, C++, MATLAB, LaTeX
+    }
+  \resumeSubHeadingListEnd
+
+\end{document}

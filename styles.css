@@ -5,22 +5,22 @@
 
 /* CSS Variables */
 :root {
-    /* Color palette - warm, scholarly tones (Light Mode) */
-    --color-bg: #faf8f5;
-    --color-bg-alt: #f4f1eb;
+    /* Color palette - Academic Professional with Northwestern accent (Light Mode) */
+    --color-bg: #fafafa;
+    --color-bg-alt: #f5f5f5;
     --color-surface: #ffffff;
-    --color-text: #2d2a26;
-    --color-text-muted: #6b6560;
-    --color-text-light: #9a938b;
-    --color-accent: #8b4513;
-    --color-accent-hover: #a0522d;
-    --color-accent-light: #d4a574;
-    --color-border: #e5e0d8;
-    --color-border-light: #ece8e1;
+    --color-text: #1a1a1a;
+    --color-text-muted: #555555;
+    --color-text-light: #888888;
+    --color-accent: #4E2A84;
+    --color-accent-hover: #3d2069;
+    --color-accent-light: #e8e0f0;
+    --color-border: #e0e0e0;
+    --color-border-light: #eeeeee;
     
-    /* Typography */
-    --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* Typography - Northwestern Style Alignment */
+    --font-serif: 'Merriweather', Georgia, 'Times New Roman', serif; /* Updated to Merriweather for authoritative academic look */
+    --font-sans: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     
     /* Spacing - more compact */
     --space-xs: 0.25rem;
@@ -34,6 +34,7 @@
     /* Layout */
     --max-width: 1200px;
     --content-width: 800px;
+    --border-radius: 4px; /* Sharper corners for academic look */
     
     /* Transitions */
     --transition-fast: 150ms ease;
@@ -44,33 +45,33 @@
 /* Dark Mode - auto detect system preference */
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-        --color-bg: #1a1a1a;
-        --color-bg-alt: #242424;
-        --color-surface: #2d2d2d;
-        --color-text: #e8e4e0;
-        --color-text-muted: #a8a4a0;
-        --color-text-light: #787470;
-        --color-accent: #d4a574;
-        --color-accent-hover: #e0b888;
-        --color-accent-light: #8b6914;
-        --color-border: #3d3d3d;
-        --color-border-light: #333333;
+        --color-bg: #121212;
+        --color-bg-alt: #1a1a1a;
+        --color-surface: #242424;
+        --color-text: #e4e4e4;
+        --color-text-muted: #a0a0a0;
+        --color-text-light: #707070;
+        --color-accent: #b39ddb;
+        --color-accent-hover: #d1c4e9;
+        --color-accent-light: #3d2069;
+        --color-border: #333333;
+        --color-border-light: #2a2a2a;
     }
 }
 
 /* Manual dark mode override */
 [data-theme="dark"] {
-    --color-bg: #1a1a1a;
-    --color-bg-alt: #242424;
-    --color-surface: #2d2d2d;
-    --color-text: #e8e4e0;
-    --color-text-muted: #a8a4a0;
-    --color-text-light: #787470;
-    --color-accent: #d4a574;
-    --color-accent-hover: #e0b888;
-    --color-accent-light: #8b6914;
-    --color-border: #3d3d3d;
-    --color-border-light: #333333;
+    --color-bg: #121212;
+    --color-bg-alt: #1a1a1a;
+    --color-surface: #242424;
+    --color-text: #e4e4e4;
+    --color-text-muted: #a0a0a0;
+    --color-text-light: #707070;
+    --color-accent: #b39ddb;
+    --color-accent-hover: #d1c4e9;
+    --color-accent-light: #3d2069;
+    --color-border: #333333;
+    --color-border-light: #2a2a2a;
 }
 
 /* Reset & Base */
@@ -135,14 +136,15 @@ body {
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
-    font-weight: 500;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
+    font-weight: 700; /* Bolder for NU style */
+    line-height: 1.25;
+    letter-spacing: -0.02em; /* Tighter tracking looks more professional */
+    color: var(--color-text); /* Keep headers dark/neutral */
 }
 
-h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
-h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
-h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.75rem, 3vw, 2.25rem); }
+h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); }
 
 p {
     margin-bottom: 1em;
@@ -182,7 +184,7 @@ strong {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(250, 248, 245, 0.95);
+    background: rgba(250, 250, 250, 0.95);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--color-border-light);
@@ -195,7 +197,7 @@ strong {
 /* Reduce blur on Safari for better performance */
 @supports (-webkit-touch-callout: none) {
     .nav {
-        background: rgba(250, 248, 245, 0.98);
+        background: rgba(250, 250, 250, 0.98);
         -webkit-backdrop-filter: blur(4px);
         backdrop-filter: blur(4px);
     }
@@ -204,23 +206,23 @@ strong {
 /* Dark mode nav background */
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) .nav {
-        background: rgba(26, 26, 26, 0.95);
+        background: rgba(18, 18, 18, 0.95);
     }
 }
 
 [data-theme="dark"] .nav {
-    background: rgba(26, 26, 26, 0.95);
+    background: rgba(18, 18, 18, 0.95);
 }
 
 /* Safari dark mode nav optimization */
 @supports (-webkit-touch-callout: none) {
     @media (prefers-color-scheme: dark) {
         :root:not([data-theme="light"]) .nav {
-            background: rgba(26, 26, 26, 0.98);
+            background: rgba(18, 18, 18, 0.98);
         }
     }
     [data-theme="dark"] .nav {
-        background: rgba(26, 26, 26, 0.98);
+        background: rgba(18, 18, 18, 0.98);
     }
 }
 
@@ -241,11 +243,11 @@ strong {
 }
 
 .nav-logo {
-    font-family: var(--font-serif);
+    font-family: var(--font-serif); /* Uses Merriweather now */
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 900; /* Extra bold for logo presence */
     color: var(--color-text);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.05em; /* Tight tracking for logo style */
 }
 
 .nav-logo:hover {
@@ -425,12 +427,26 @@ strong {
     transition: opacity 0.4s ease-in-out;
 }
 
-.hero-image:hover .profile-img {
-    opacity: 0;
+/* Profile image hover - desktop only */
+@media (hover: hover) {
+    .hero-image:hover .profile-img {
+        opacity: 0;
+    }
+
+    .hero-image:hover .profile-img-hover {
+        opacity: 1;
+    }
 }
 
-.hero-image:hover .profile-img-hover {
-    opacity: 1;
+/* Profile image tap toggle - mobile */
+@media (hover: none) {
+    .hero-image.tapped .profile-img {
+        opacity: 0;
+    }
+
+    .hero-image.tapped .profile-img-hover {
+        opacity: 1;
+    }
 }
 
 .hero-image-placeholder {
@@ -505,9 +521,11 @@ strong {
     padding: var(--space-sm) var(--space-md);
     font-size: 0.875rem;
     font-weight: 500;
-    border-radius: 6px;
+    border-radius: var(--border-radius);
     transition: all var(--transition-fast);
     border: 1px solid transparent;
+    text-transform: uppercase; /* Academic touch */
+    letter-spacing: 0.05em;
 }
 
 .btn-primary {
@@ -608,9 +626,10 @@ h2.section-title.active {
     bottom: -8px;
     left: 0;
     width: 60px;
-    height: 2px;
+    height: 4px; /* Thicker line for better visual balance with Merriweather */
     background-color: var(--color-accent);
     transition: width 0.5s ease;
+    border-radius: 2px;
 }
 
 .section-title.active::after {
@@ -623,9 +642,10 @@ h2.section-title.active {
     bottom: -8px;
     left: 0;
     width: 60px;
-    height: 2px;
+    height: 4px; /* Thicker line for better visual balance with Merriweather */
     background-color: var(--color-accent);
     transition: width 0.5s ease;
+    border-radius: 2px;
 }
 
 .section-title.active::after {
@@ -677,7 +697,7 @@ h2.section-title.active {
 }
 
 .about-text a:hover {
-    color: var(--color-accent-dark, #8b6914);
+    color: var(--color-accent-hover);
 }
 
 .about-text a:hover::after {
@@ -796,7 +816,7 @@ h2.section-title.active {
     flex-direction: column;
     padding: var(--space-md);
     background-color: var(--color-surface);
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     border: 1px solid var(--color-border-light);
     transition: all 0.3s ease;
     cursor: pointer;
@@ -810,16 +830,57 @@ h2.section-title.active {
 }
 
 
-/* Hover effects only on desktop */
+/* Hover effects only on desktop (including narrow windows with mouse) */
 @media (hover: hover) {
     .pub-item:hover {
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-        transform: translateY(-4px);
-        border-color: var(--color-accent-light);
+        /* Elegant, diffused shadow for "floating" feel without harsh pop */
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0,0,0,0.05);
+        /* Subtle lift and micro-scale */
+        transform: translateY(-3px) scale(1.015);
+        /* Soft accent border (Light Mode default) */
+        border-color: rgba(78, 42, 132, 0.3); 
+        z-index: 5;
+    }
+
+    /* Dark mode hover optimization: Subtle refinement like Research cards */
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .pub-item:hover {
+            /* Deeper, softer shadow */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            /* Subtle border highlight */
+            border-color: rgba(179, 157, 219, 0.3); /* Low opacity lavender */
+            /* Very subtle background lift */
+            background-color: var(--color-surface); /* Keep surface color */
+            transform: translateY(-3px) scale(1.015);
+        }
+    }
+    
+    [data-theme="dark"] .pub-item:hover {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        border-color: rgba(179, 157, 219, 0.3);
+        background-color: var(--color-surface);
+        transform: translateY(-3px) scale(1.015);
     }
 
     .pub-item:hover .pub-title {
         color: var(--color-accent);
+    }
+    
+    /* Image zoom removed for stability and cleaner look */
+    .pub-item:hover .pub-thumbnail img,
+    .pub-item:hover .pub-thumbnail video {
+        transform: none;
+    }
+    
+    /* Ensure the container clips contents */
+    .pub-thumbnail {
+        overflow: hidden;
+    }
+    
+    /* Apply smooth transition to container only */
+    .pub-item {
+        /* Slower, more natural easing */
+        transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 }
 
@@ -845,7 +906,7 @@ h2.section-title.active {
 }
 
 .pub-thumbnail {
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     overflow: hidden;
     background-color: var(--color-bg-alt);
     align-self: start;
@@ -947,7 +1008,7 @@ h2.section-title.active {
 
 .project-card {
     background-color: var(--color-surface);
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     overflow: hidden;
     border: 1px solid var(--color-border-light);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Smooth apple-like spring */
@@ -1264,7 +1325,7 @@ h2.section-title.active {
     align-items: flex-start;
     padding: var(--space-md);
     background-color: var(--color-surface);
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     border: 1px solid var(--color-border-light);
     transition: all var(--transition-base);
     cursor: pointer;
@@ -1305,7 +1366,7 @@ h2.section-title.active {
 
     .course-item:hover .course-title {
         font-weight: 700;
-        color: var(--color-text);
+        color: var(--color-accent);
     }
 
     .course-item:hover .course-desc {
@@ -1395,8 +1456,22 @@ h2.section-title.active {
 .contact-note {
     padding: var(--space-lg);
     background-color: var(--color-surface);
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     border: 1px solid var(--color-border-light);
+    transition: all 0.3s ease;
+}
+
+/* Hover effects only on desktop */
+@media (hover: hover) {
+    .contact-note:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        transform: translateY(-4px);
+        border-color: var(--color-accent-light);
+    }
+
+    .contact-note:hover h3 {
+        color: var(--color-accent);
+    }
 }
 
 .contact-note h3 {
@@ -1404,6 +1479,7 @@ h2.section-title.active {
     font-family: var(--font-sans);
     font-weight: 600;
     margin-bottom: var(--space-sm);
+    transition: color 0.3s ease;
 }
 
 .contact-note p {
@@ -1588,9 +1664,16 @@ h2.section-title.active {
         grid-template-columns: 1fr;
     }
     
+    /* Center and limit the width of the card itself for better proportion */
+    .pub-item {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
     .pub-thumbnail {
         width: 100%;
-        max-width: 100%;
+        max-width: 100%; /* Fill the constrained card width */
         align-self: stretch;
     }
     
@@ -1785,10 +1868,10 @@ h2.section-title.active {
     pointer-events: none;
     transition: opacity 0.5s ease;
     opacity: 0;
-    /* Default (Light Mode) Styling */
+    /* Default (Light Mode) Styling - Northwestern Purple */
     background: radial-gradient(
         600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-        rgba(139, 69, 19, 0.1), 
+        rgba(78, 42, 132, 0.12), 
         transparent 40%
     );
     mix-blend-mode: multiply;
@@ -1798,11 +1881,11 @@ h2.section-title.active {
     opacity: 1;
 }
 
-/* Dark Mode Override - Stronger, brighter glow */
+/* Dark Mode Override - Subtle light glow */
 [data-theme="dark"] .spotlight-card::after {
     background: radial-gradient(
         600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-        rgba(255, 160, 40, 0.08), /* Reduced opacity for subtlety */
+        rgba(179, 157, 219, 0.08),
         transparent 40%
     );
     mix-blend-mode: normal !important;
@@ -1814,7 +1897,7 @@ h2.section-title.active {
     :root:not([data-theme="light"]) .spotlight-card::after {
         background: radial-gradient(
             600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-            rgba(255, 160, 40, 0.08), /* Reduced opacity */
+            rgba(179, 157, 219, 0.08),
             transparent 40%
         );
         mix-blend-mode: normal !important;
