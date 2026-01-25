@@ -124,6 +124,44 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* ============================================
+   THEME & LANGUAGE TRANSITION ANIMATIONS
+   ============================================ */
+
+/* Theme transition - smooth color changes */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+    transition: 
+        background-color 0.4s ease,
+        border-color 0.4s ease,
+        color 0.4s ease,
+        fill 0.4s ease,
+        stroke 0.4s ease,
+        box-shadow 0.4s ease !important;
+}
+
+/* Language transition - text fade effect */
+html.lang-transition [data-en][data-zh] {
+    animation: textFadeSwitch 0.3s ease;
+}
+
+@keyframes textFadeSwitch {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Particle canvas background */
 #particle-canvas {
     position: fixed;
@@ -335,11 +373,21 @@ strong {
     cursor: pointer;
     color: var(--color-text);
     transition: all var(--transition-base);
+    overflow: hidden;
 }
 
 .theme-toggle:hover {
     background-color: var(--color-bg-alt);
     border-color: var(--color-accent);
+}
+
+/* Theme toggle icon animation */
+.theme-toggle svg {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle:active svg {
+    transform: rotate(360deg) scale(0.8);
 }
 
 /* Language Toggle Button */
@@ -357,11 +405,23 @@ strong {
     transition: all var(--transition-base);
     font-size: 0.875rem;
     font-weight: 600;
+    overflow: hidden;
 }
 
 .lang-toggle:hover {
     background-color: var(--color-bg-alt);
     border-color: var(--color-accent);
+}
+
+/* Language toggle text animation */
+.lang-toggle .lang-en,
+.lang-toggle .lang-zh {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.lang-toggle:active .lang-en,
+.lang-toggle:active .lang-zh {
+    transform: scale(0.8);
 }
 
 /* Default: show 中 (to switch to Chinese) */

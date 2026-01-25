@@ -270,7 +270,7 @@ function initResearchExpand() {
 }
 
 /**
- * Dark Mode Toggle
+ * Dark Mode Toggle with smooth transition
  */
 function initThemeToggle() {
     const themeToggle = document.querySelector('.theme-toggle');
@@ -300,6 +300,9 @@ function initThemeToggle() {
             newTheme = systemPrefersDark ? 'light' : 'dark';
         }
         
+        // Enable transition animation
+        document.documentElement.classList.add('theme-transition');
+        
         document.documentElement.setAttribute('data-theme', newTheme);
         
         // Smart Storage Logic:
@@ -312,19 +315,28 @@ function initThemeToggle() {
         } else {
             localStorage.setItem('theme', newTheme);
         }
+        
+        // Remove transition class after animation completes
+        setTimeout(() => {
+            document.documentElement.classList.remove('theme-transition');
+        }, 400);
     });
     
     // Listen for system theme changes
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         // Only auto-switch if user hasn't manually set a preference
         if (!localStorage.getItem('theme')) {
-            // Theme will auto-update via CSS media query
+            // Add transition for system theme changes too
+            document.documentElement.classList.add('theme-transition');
+            setTimeout(() => {
+                document.documentElement.classList.remove('theme-transition');
+            }, 400);
         }
     });
 }
 
 /**
- * Language Toggle (English/Chinese)
+ * Language Toggle (English/Chinese) with smooth transition
  */
 function initLanguageToggle() {
     const langToggle = document.querySelector('.lang-toggle');
@@ -359,6 +371,9 @@ function initLanguageToggle() {
         const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
         const newLang = currentLang === 'en' ? 'zh' : 'en';
         
+        // Enable transition animation
+        document.documentElement.classList.add('lang-transition');
+        
         document.documentElement.setAttribute('data-lang', newLang);
         localStorage.setItem('lang', newLang);
         
@@ -366,6 +381,11 @@ function initLanguageToggle() {
         langToggle.title = newLang === 'en' ? '切换到中文' : 'Switch to English';
         
         applyLanguage(newLang);
+        
+        // Remove transition class after animation completes
+        setTimeout(() => {
+            document.documentElement.classList.remove('lang-transition');
+        }, 300);
     });
 }
 
