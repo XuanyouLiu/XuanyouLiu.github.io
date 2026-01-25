@@ -27,9 +27,15 @@ function initNavigation() {
     const navLinks = document.querySelector('.nav-links');
     
     if (navToggle && navLinks) {
+        // Helper to update ARIA state
+        const updateAriaState = (isOpen) => {
+            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        };
+        
         navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+            const isOpen = navLinks.classList.toggle('active');
             navToggle.classList.toggle('active');
+            updateAriaState(isOpen);
         });
         
         // Close menu when clicking a link
@@ -37,6 +43,7 @@ function initNavigation() {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
                 navToggle.classList.remove('active');
+                updateAriaState(false);
             });
         });
         
@@ -45,6 +52,17 @@ function initNavigation() {
             if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
                 navLinks.classList.remove('active');
                 navToggle.classList.remove('active');
+                updateAriaState(false);
+            }
+        });
+        
+        // Support Escape key to close menu
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                navToggle.classList.remove('active');
+                updateAriaState(false);
+                navToggle.focus();
             }
         });
     }
@@ -173,6 +191,11 @@ function initPublicationExpand() {
         return window.innerWidth < 768;
     };
     
+    // Helper to update ARIA state
+    const updateAriaState = (item, isExpanded) => {
+        item.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    };
+    
     pubItems.forEach(item => {
         // We use 'click' for mobile/narrow screens AND as a fallback
         // We use 'mouseenter'/'mouseleave' for desktop
@@ -184,7 +207,8 @@ function initPublicationExpand() {
                 if (e.target.closest('.pub-link')) return;
                 
                 // Toggle current item only - no auto-close of others
-                item.classList.toggle('expanded');
+                const isExpanded = item.classList.toggle('expanded');
+                updateAriaState(item, isExpanded);
             }
         });
 
@@ -192,12 +216,25 @@ function initPublicationExpand() {
         item.addEventListener('mouseenter', () => {
             if (!isMobileWidth()) {
                 item.classList.add('expanded');
+                updateAriaState(item, true);
             }
         });
         
         item.addEventListener('mouseleave', () => {
             if (!isMobileWidth()) {
                 item.classList.remove('expanded');
+                updateAriaState(item, false);
+            }
+        });
+        
+        // Support Enter/Space key for accessibility
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'button');
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const isExpanded = item.classList.toggle('expanded');
+                updateAriaState(item, isExpanded);
             }
         });
     });
@@ -215,7 +252,18 @@ function initResearchExpand() {
     cards.forEach(card => {
         card.addEventListener('click', (e) => {
             if (isMobileWidth()) {
-                card.classList.toggle('expanded');
+                const isExpanded = card.classList.toggle('expanded');
+                card.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+            }
+        });
+        
+        // Support keyboard navigation
+        card.setAttribute('tabindex', '0');
+        card.addEventListener('keydown', (e) => {
+            if ((e.key === 'Enter' || e.key === ' ') && isMobileWidth()) {
+                e.preventDefault();
+                const isExpanded = card.classList.toggle('expanded');
+                card.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
             }
         });
     });

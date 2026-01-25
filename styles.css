@@ -46,9 +46,10 @@
     --transition-slow: 400ms ease;
 }
 
-/* Dark Mode - auto detect system preference */
+/* Dark Mode Variables - shared mixin via CSS custom properties */
 @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
+    :root:not([data-theme="light"]),
+    [data-theme="dark"] {
         --color-bg: #121212;
         --color-bg-alt: #1a1a1a;
         --color-surface: #242424;
@@ -63,19 +64,42 @@
     }
 }
 
-/* Manual dark mode override */
-[data-theme="dark"] {
-    --color-bg: #121212;
-    --color-bg-alt: #1a1a1a;
-    --color-surface: #242424;
-    --color-text: #e4e4e4;
-    --color-text-muted: #a0a0a0;
-    --color-text-light: #707070;
-    --color-accent: #b39ddb;
-    --color-accent-hover: #d1c4e9;
-    --color-accent-light: #3d2069;
-    --color-border: #333333;
-    --color-border-light: #2a2a2a;
+/* Manual dark mode override (when system is light but user prefers dark) */
+@media (prefers-color-scheme: light) {
+    [data-theme="dark"] {
+        --color-bg: #121212;
+        --color-bg-alt: #1a1a1a;
+        --color-surface: #242424;
+        --color-text: #e4e4e4;
+        --color-text-muted: #a0a0a0;
+        --color-text-light: #707070;
+        --color-accent: #b39ddb;
+        --color-accent-hover: #d1c4e9;
+        --color-accent-light: #3d2069;
+        --color-border: #333333;
+        --color-border-light: #2a2a2a;
+    }
+}
+
+/* Skip Link for Accessibility */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-accent);
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--border-radius);
+    z-index: 10000;
+    font-weight: 500;
+    text-decoration: none;
+    transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+    top: var(--space-md);
+    color: white;
 }
 
 /* Reset & Base */
@@ -207,26 +231,32 @@ strong {
     }
 }
 
-/* Dark mode nav background */
+/* Dark mode nav background - consolidated selector */
 @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .nav {
+    :root:not([data-theme="light"]) .nav,
+    [data-theme="dark"] .nav {
         background: rgba(18, 18, 18, 0.95);
     }
 }
 
-[data-theme="dark"] .nav {
-    background: rgba(18, 18, 18, 0.95);
+@media (prefers-color-scheme: light) {
+    [data-theme="dark"] .nav {
+        background: rgba(18, 18, 18, 0.95);
+    }
 }
 
 /* Safari dark mode nav optimization */
 @supports (-webkit-touch-callout: none) {
     @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) .nav {
+        :root:not([data-theme="light"]) .nav,
+        [data-theme="dark"] .nav {
             background: rgba(18, 18, 18, 0.98);
         }
     }
-    [data-theme="dark"] .nav {
-        background: rgba(18, 18, 18, 0.98);
+    @media (prefers-color-scheme: light) {
+        [data-theme="dark"] .nav {
+            background: rgba(18, 18, 18, 0.98);
+        }
     }
 }
 
@@ -360,23 +390,14 @@ strong {
     display: block;
 }
 
-/* Dark mode icon swap */
-[data-theme="dark"] .theme-toggle .sun-icon,
-:root:not([data-theme="light"]) .theme-toggle .sun-icon {
-    display: block;
-}
-
-[data-theme="dark"] .theme-toggle .moon-icon,
-:root:not([data-theme="light"]) .theme-toggle .moon-icon {
-    display: none;
-}
-
-/* Only apply auto dark mode icon swap when system prefers dark */
+/* Dark mode icon swap - consolidated */
 @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .theme-toggle .sun-icon {
+    :root:not([data-theme="light"]) .theme-toggle .sun-icon,
+    [data-theme="dark"] .theme-toggle .sun-icon {
         display: block;
     }
-    :root:not([data-theme="light"]) .theme-toggle .moon-icon {
+    :root:not([data-theme="light"]) .theme-toggle .moon-icon,
+    [data-theme="dark"] .theme-toggle .moon-icon {
         display: none;
     }
 }
@@ -387,6 +408,12 @@ strong {
     }
     :root:not([data-theme="dark"]) .theme-toggle .moon-icon {
         display: block;
+    }
+    [data-theme="dark"] .theme-toggle .sun-icon {
+        display: block;
+    }
+    [data-theme="dark"] .theme-toggle .moon-icon {
+        display: none;
     }
 }
 
@@ -879,7 +906,8 @@ h2.section-title.active {
 
     /* Dark mode hover optimization: Subtle refinement like Research cards */
     @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) .pub-item:hover {
+        :root:not([data-theme="light"]) .pub-item:hover,
+        [data-theme="dark"] .pub-item:hover {
             /* Deeper, softer shadow */
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             /* Subtle border highlight */
@@ -890,11 +918,13 @@ h2.section-title.active {
         }
     }
     
-    [data-theme="dark"] .pub-item:hover {
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        border-color: rgba(179, 157, 219, 0.3);
-        background-color: var(--color-surface);
-        transform: translateY(-3px) scale(1.015);
+    @media (prefers-color-scheme: light) {
+        [data-theme="dark"] .pub-item:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(179, 157, 219, 0.3);
+            background-color: var(--color-surface);
+            transform: translateY(-3px) scale(1.015);
+        }
     }
 
     .pub-item:hover .pub-title {
@@ -1270,22 +1300,25 @@ h2.section-title.active {
     }
 }
 
-[data-theme="dark"] .project-tags .tag-uchicago {
-    background-color: rgba(128, 0, 0, 0.2);
-    color: #e07070;
-    border-color: rgba(128, 0, 0, 0.4);
-}
+/* Manual dark mode for university tags when system is light */
+@media (prefers-color-scheme: light) {
+    [data-theme="dark"] .project-tags .tag-uchicago {
+        background-color: rgba(128, 0, 0, 0.2);
+        color: #e07070;
+        border-color: rgba(128, 0, 0, 0.4);
+    }
 
-[data-theme="dark"] .project-tags .tag-northwestern {
-    background-color: rgba(78, 42, 132, 0.2);
-    color: #a888d0;
-    border-color: rgba(78, 42, 132, 0.4);
-}
+    [data-theme="dark"] .project-tags .tag-northwestern {
+        background-color: rgba(78, 42, 132, 0.2);
+        color: #a888d0;
+        border-color: rgba(78, 42, 132, 0.4);
+    }
 
-[data-theme="dark"] .project-tags .tag-upenn {
-    background-color: rgba(1, 31, 91, 0.2);
-    color: #7090c0;
-    border-color: rgba(1, 31, 91, 0.4);
+    [data-theme="dark"] .project-tags .tag-upenn {
+        background-color: rgba(1, 31, 91, 0.2);
+        color: #7090c0;
+        border-color: rgba(1, 31, 91, 0.4);
+    }
 }
 
 /* Ensure content container adjusts naturally */
@@ -1931,20 +1964,22 @@ h2.section-title.active {
     opacity: 1;
 }
 
-/* Dark Mode Override - Subtle light glow */
-[data-theme="dark"] .spotlight-card::after {
-    background: radial-gradient(
-        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-        rgba(179, 157, 219, 0.08),
-        transparent 40%
-    );
-    mix-blend-mode: normal !important;
-    z-index: 99;
+/* Dark Mode Override - Subtle light glow (consolidated) */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .spotlight-card::after,
+    [data-theme="dark"] .spotlight-card::after {
+        background: radial-gradient(
+            600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+            rgba(179, 157, 219, 0.08),
+            transparent 40%
+        );
+        mix-blend-mode: normal !important;
+        z-index: 99;
+    }
 }
 
-/* Apply same style when system is dark and no theme is set */
-@media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .spotlight-card::after {
+@media (prefers-color-scheme: light) {
+    [data-theme="dark"] .spotlight-card::after {
         background: radial-gradient(
             600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
             rgba(179, 157, 219, 0.08),

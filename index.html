@@ -62,6 +62,67 @@
     }
     </script>
     
+    <!-- Structured Data for Publications -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": [
+            {
+                "@type": "ScholarlyArticle",
+                "position": 1,
+                "name": "Seeing with the Hands: A Sensory Substitution That Supports Manual Interactions",
+                "author": [
+                    {"@type": "Person", "name": "Shan-Yuan Teng"},
+                    {"@type": "Person", "name": "Gene Kim"},
+                    {"@type": "Person", "name": "Xuanyou Liu"},
+                    {"@type": "Person", "name": "Pedro Lopes"}
+                ],
+                "datePublished": "2025",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "ACM"
+                },
+                "isPartOf": {
+                    "@type": "PublicationEvent",
+                    "name": "CHI 2025",
+                    "description": "ACM Conference on Human Factors in Computing Systems"
+                },
+                "sameAs": "https://doi.org/10.1145/3706598.3713419",
+                "description": "A sensory substitution device using hand-mounted electrotactile display for blind and low-vision users"
+            },
+            {
+                "@type": "ScholarlyArticle",
+                "position": 2,
+                "name": "TacTex: A Textile Interface with Seamlessly-Integrated Electrodes for High-Resolution Electrotactile Stimulation",
+                "author": [
+                    {"@type": "Person", "name": "Hongnan Lin"},
+                    {"@type": "Person", "name": "Xuanyou Liu"},
+                    {"@type": "Person", "name": "Shengsheng Jiang"},
+                    {"@type": "Person", "name": "Qi Wang"},
+                    {"@type": "Person", "name": "Ye Tao"},
+                    {"@type": "Person", "name": "Guanyun Wang"},
+                    {"@type": "Person", "name": "Wei Sun"},
+                    {"@type": "Person", "name": "Teng Han"},
+                    {"@type": "Person", "name": "Feng Tian"}
+                ],
+                "datePublished": "2024",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "ACM"
+                },
+                "isPartOf": {
+                    "@type": "PublicationEvent",
+                    "name": "CHI 2024",
+                    "description": "ACM Conference on Human Factors in Computing Systems"
+                },
+                "sameAs": "https://doi.org/10.1145/3613904.3642873",
+                "description": "A textile interface integrating high-density haptic feedback with 512x512 resolution for wearable devices"
+            }
+        ]
+    }
+    </script>
+    
     <!-- Favicon (add ?v=X to force refresh when updating) -->
     <link rel="shortcut icon" href="Asset/icon/favicon.ico?v=2">
     <link rel="icon" type="image/png" sizes="32x32" href="Asset/icon/favicon-32x32.png?v=2">
@@ -71,8 +132,11 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap&font-display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Preload critical images -->
+    <link rel="preload" href="Asset/Profile.png" as="image" fetchpriority="high">
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCLKD5S9ZX"></script>
@@ -84,18 +148,21 @@
     </script>
 </head>
 <body>
-    <canvas id="particle-canvas"></canvas>
-    <div class="grain-overlay"></div>
+    <!-- Skip to main content for accessibility -->
+    <a href="#about" class="skip-link">Skip to main content</a>
     
-    <nav class="nav">
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+    <div class="grain-overlay" aria-hidden="true"></div>
+    
+    <nav class="nav" role="navigation" aria-label="Main navigation">
         <div class="nav-inner">
             <a href="#" class="nav-logo">XL</a>
-            <div class="nav-links">
-                <a href="#about" class="nav-link" data-en="About" data-zh="关于">About</a>
-                <a href="#publications" class="nav-link" data-en="Publications" data-zh="论文">Publications</a>
-                <a href="#research" class="nav-link" data-en="Research" data-zh="研究">Research</a>
-                <a href="#teaching" class="nav-link" data-en="Teaching" data-zh="教学">Teaching</a>
-                <a href="#contact" class="nav-link" data-en="Contact" data-zh="联系">Contact</a>
+            <div class="nav-links" id="nav-links" role="menubar">
+                <a href="#about" class="nav-link" role="menuitem" data-en="About" data-zh="关于">About</a>
+                <a href="#publications" class="nav-link" role="menuitem" data-en="Publications" data-zh="论文">Publications</a>
+                <a href="#research" class="nav-link" role="menuitem" data-en="Research" data-zh="研究">Research</a>
+                <a href="#teaching" class="nav-link" role="menuitem" data-en="Teaching" data-zh="教学">Teaching</a>
+                <a href="#contact" class="nav-link" role="menuitem" data-en="Contact" data-zh="联系">Contact</a>
             </div>
             <div class="nav-controls">
                 <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
@@ -118,7 +185,7 @@
                     <span class="lang-en">EN</span>
                     <span class="lang-zh">中</span>
                 </button>
-                <button class="nav-toggle" aria-label="Toggle menu">
+                <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
                     <span></span>
                     <span></span>
                 </button>
@@ -130,8 +197,8 @@
         <div class="hero-content">
             <div class="hero-image-wrapper">
                 <div class="hero-image">
-                    <img src="Asset/Profile.png" alt="Xuanyou Liu" class="profile-img">
-                    <img src="Asset/Profile_hover.png" alt="Xuanyou Liu" class="profile-img-hover">
+                    <img src="Asset/Profile.png" alt="Xuanyou Liu - HCI Researcher at Northwestern University" class="profile-img" fetchpriority="high">
+                    <img src="Asset/Profile_hover.png" alt="Xuanyou Liu smiling" class="profile-img-hover" loading="lazy">
                 </div>
             </div>
             <div class="hero-text">
@@ -208,12 +275,12 @@
                 <h2 class="section-title" data-en="Publications" data-zh="发表论文">Publications</h2>
                 <p class="section-subtitle" data-en="* denotes equal contribution" data-zh="* 代表共同第一作者">* denotes equal contribution</p>
                 
-                <div class="publications-list">
-                    <article class="pub-item">
+                <div class="publications-list" role="list">
+                    <article class="pub-item" role="listitem" aria-expanded="false">
                         <div class="pub-main">
                             <div class="pub-thumbnail">
-                                <img src="Asset/Seeing_with_Hand.png" alt="Seeing with the Hands" loading="lazy">
-                                <video src="Asset/Seeing_preview.mp4?v=2" muted loop playsinline preload="none"></video>
+                                <img src="Asset/Seeing_with_Hand.png" alt="Seeing with the Hands - Hand-mounted electrotactile display for sensory substitution" loading="lazy">
+                                <video src="Asset/Seeing_preview.mp4?v=2" muted loop playsinline preload="none" aria-hidden="true"></video>
                             </div>
                             <div class="pub-content">
                                 <h3 class="pub-title" data-en="Seeing with the Hands: A Sensory Substitution That Supports Manual Interactions" data-zh="Seeing with the Hands：支持手部交互的感官替代技术">Seeing with the Hands: A Sensory Substitution That Supports Manual Interactions</h3>
@@ -231,20 +298,20 @@
                         </div>
                     </article>
 
-                    <article class="pub-item">
+                    <article class="pub-item" role="listitem" aria-expanded="false">
                         <div class="pub-main">
                             <div class="pub-thumbnail">
-                                <img src="Asset/Tactex.png" alt="TacTex" loading="lazy">
-                                <video src="Asset/TacTex_preview.mp4?v=2" muted loop playsinline preload="none"></video>
+                                <img src="Asset/Tactex.png" alt="TacTex - High-resolution electrotactile textile interface with woven electrode structure" loading="lazy">
+                                <video src="Asset/TacTex_preview.mp4?v=2" muted loop playsinline preload="none" aria-hidden="true"></video>
                             </div>
                             <div class="pub-content">
                                 <h3 class="pub-title" data-en="TacTex: A Textile Interface with Seamlessly-Integrated Electrodes for High-Resolution Electrotactile Stimulation" data-zh="TacTex：无缝集成电极的高分辨率电触觉纺织界面">TacTex: A Textile Interface with Seamlessly-Integrated Electrodes for High-Resolution Electrotactile Stimulation</h3>
                                 <p class="pub-authors">Hongnan Lin, <strong>Xuanyou Liu</strong>, Shengsheng Jiang, Qi Wang, Ye Tao, Guanyun Wang, Wei Sun, Teng Han, Feng Tian</p>
                                 <p class="pub-venue">CHI 2024 | ACM Conference on Human Factors in Computing Systems</p>
                                 <div class="pub-links">
-<a href="Asset/TacTex.pdf" class="pub-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">PDF</a>
-                                <a href="Asset/TacTex.mp4" class="pub-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"><span data-en="Video" data-zh="视频">Video</span></a>
-                                <a href="https://doi.org/10.1145/3613904.3642873" class="pub-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">DOI</a>
+<a href="Asset/TacTex.pdf" class="pub-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" aria-label="Download PDF of TacTex paper">PDF</a>
+                                <a href="Asset/TacTex.mp4" class="pub-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" aria-label="Watch TacTex video demonstration"><span data-en="Video" data-zh="视频">Video</span></a>
+                                <a href="https://doi.org/10.1145/3613904.3642873" class="pub-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" aria-label="View TacTex DOI reference">DOI</a>
                                 </div>
                             </div>
                         </div>
