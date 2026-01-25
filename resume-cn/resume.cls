@@ -15,6 +15,8 @@
 \urlstyle{tt}
 % use xcolor for customizing color
 \RequirePackage[dvipsnames]{xcolor}
+% use fontawesome5 for icons
+\RequirePackage{fontawesome5}
 % loading fonts
 \RequirePackage{fontspec}
 
@@ -22,6 +24,7 @@
 \definecolor{NUPurple}{HTML}{4E2A84}
 \definecolor{DarkText}{HTML}{1a1a1a}
 \definecolor{GrayText}{HTML}{666666}
+\definecolor{LightGray}{HTML}{f5f5f5}
 
 % CJK support
 \RequirePackage{xeCJK}
@@ -56,21 +59,22 @@
 \RequirePackage{titlesec}
 \RequirePackage{enumitem}
 \setlist{noitemsep}
-\setlist[itemize]{topsep=0.2em, leftmargin=1.2pc}
-\setlist[enumerate]{topsep=0.2em, leftmargin=1.2pc}
+\setlist[itemize]{topsep=0.2em, leftmargin=1.5pc, itemsep=0.05em}
+\setlist[enumerate]{topsep=0.2em, leftmargin=1.5pc}
 
+% Section formatting - cleaner with more breathing room
 \titleformat{\section}
   {\large\bfseries\raggedright\color{NUPurple}}
   {}{0em}
   {}
   [\color{NUPurple}\titlerule]
-\titlespacing*{\section}{0cm}{*1.4}{*1.0}
+\titlespacing*{\section}{0cm}{1.1em}{0.7em}
 
 \titleformat{\subsection}
   {\normalsize\raggedright}
   {}{0em}
   {}
-\titlespacing*{\subsection}{0cm}{*1.2}{*0.4}
+\titlespacing*{\subsection}{0cm}{0.7em}{0.25em}
 
 % Commands
 \newcommand{\datedsection}[2]{%
@@ -83,9 +87,10 @@
   {\par #1 \hfill {\small\color{GrayText}#2} \par}%
 }
 
+% Name - larger and more prominent
 \newcommand{\name}[1]{
-  \centerline{\LARGE\bfseries\color{NUPurple}{#1}}
-  \vspace{0.8ex}
+  \centerline{\huge\bfseries\color{NUPurple}{#1}}
+  \vspace{0.6ex}
 }
 
 % Contact info commands - no icons, clean text only
@@ -107,19 +112,19 @@
 
 \newcommand{\basicInfo}[1]{
   \centerline{\small\color{GrayText}{#1}}
-  \vspace{1.2ex}
+  \vspace{1.0ex}
 }
 
 \newcommand{\role}[2]{
   {\par \textit{#1} ~ #2 \par}
-  \vspace{0.5ex}
+  \vspace{0.4ex}
 }
 
 % For publication entries
 \newcommand{\publication}[3]{
   \par\textbf{#1}\hfill\textit{#2}\\
   {\small #3}
-  \vspace{0.6ex}
+  \vspace{0.5ex}
 }
 
 \endinput
