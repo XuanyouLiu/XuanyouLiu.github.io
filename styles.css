@@ -142,24 +142,15 @@ html.theme-transition *::after {
         box-shadow 0.4s ease !important;
 }
 
-/* Language transition - text fade effect */
-html.lang-transition [data-en][data-zh] {
-    animation: textFadeSwitch 0.3s ease;
+/* Language transition - two-phase fade */
+html.lang-fade-out [data-en][data-zh] {
+    opacity: 0;
+    transition: opacity 0.15s ease-out;
 }
 
-@keyframes textFadeSwitch {
-    0% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    50% {
-        opacity: 0;
-        transform: translateY(-4px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+html.lang-fade-in [data-en][data-zh] {
+    opacity: 1;
+    transition: opacity 0.15s ease-in;
 }
 
 /* Particle canvas background */

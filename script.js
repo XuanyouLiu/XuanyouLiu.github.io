@@ -371,21 +371,26 @@ function initLanguageToggle() {
         const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
         const newLang = currentLang === 'en' ? 'zh' : 'en';
         
-        // Enable transition animation
-        document.documentElement.classList.add('lang-transition');
+        // Phase 1: Fade out
+        document.documentElement.classList.add('lang-fade-out');
         
-        document.documentElement.setAttribute('data-lang', newLang);
-        localStorage.setItem('lang', newLang);
-        
-        // Update button title
-        langToggle.title = newLang === 'en' ? '切换到中文' : 'Switch to English';
-        
-        applyLanguage(newLang);
-        
-        // Remove transition class after animation completes
+        // Phase 2: After fade out, change content and fade in
         setTimeout(() => {
-            document.documentElement.classList.remove('lang-transition');
-        }, 300);
+            document.documentElement.setAttribute('data-lang', newLang);
+            localStorage.setItem('lang', newLang);
+            langToggle.title = newLang === 'en' ? '切换到中文' : 'Switch to English';
+            
+            applyLanguage(newLang);
+            
+            // Switch from fade-out to fade-in
+            document.documentElement.classList.remove('lang-fade-out');
+            document.documentElement.classList.add('lang-fade-in');
+            
+            // Phase 3: Clean up after fade in
+            setTimeout(() => {
+                document.documentElement.classList.remove('lang-fade-in');
+            }, 150);
+        }, 150);
     });
 }
 
