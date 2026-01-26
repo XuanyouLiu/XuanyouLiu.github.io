@@ -323,10 +323,13 @@ strong {
     font-weight: 900; /* Extra bold for logo presence */
     color: var(--color-text);
     letter-spacing: -0.05em; /* Tight tracking for logo style */
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
 }
 
 .nav-logo:hover {
     color: var(--color-accent);
+    transform: rotate(-5deg) scale(1.1);
 }
 
 .nav-link {
@@ -353,6 +356,15 @@ strong {
 }
 
 .nav-link:hover::after {
+    width: 100%;
+}
+
+/* Active Nav Link (ScrollSpy) */
+.nav-link.active {
+    color: var(--color-text);
+}
+
+.nav-link.active::after {
     width: 100%;
 }
 
@@ -488,6 +500,14 @@ strong {
     height: 2px;
     background-color: var(--color-text);
     transition: var(--transition-fast);
+}
+
+.nav-toggle.active span:first-child {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:last-child {
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* ============================================
@@ -1161,6 +1181,11 @@ h2.section-title.active {
 
 .pub-link svg {
     flex-shrink: 0;
+}
+
+.pub-link:hover {
+    background-color: var(--color-accent);
+    color: white;
 }
 
 /* ============================================
@@ -2182,4 +2207,18 @@ h2.section-title.active {
     .scroll-progress-container {
         height: 2px;
     }
+}
+
+/* ============================================
+   DYNAMICALLY INJECTED STYLES (Previously in script.js)
+   ============================================ */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }

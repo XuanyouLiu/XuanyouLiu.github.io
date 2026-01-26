@@ -594,35 +594,7 @@ function initSpotlightEffect() {
 /**
  * Add active state styling for nav links
  */
-const style = document.createElement('style');
-style.textContent = `
-    .nav-link.active {
-        color: var(--color-text);
-    }
-    .nav-link.active::after {
-        width: 100%;
-    }
-    
-    .animate-on-scroll {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    }
-    
-    .animate-on-scroll.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    .nav-toggle.active span:first-child {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-    
-    .nav-toggle.active span:last-child {
-        transform: rotate(-45deg) translate(5px, -5px);
-    }
-`;
-document.head.appendChild(style);
+// Styles moved to styles.css
 
 /**
  * Video Preview on Hover/Expand
