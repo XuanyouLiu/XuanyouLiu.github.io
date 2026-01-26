@@ -89,6 +89,21 @@ body.no-scroll {
     overflow: hidden;
 }
 
+/* Blur content when menu is open */
+body.no-scroll main,
+body.no-scroll header,
+body.no-scroll footer,
+body.no-scroll #particle-canvas {
+    filter: blur(5px);
+    pointer-events: none;
+    user-select: none;
+    transition: filter 0.3s ease;
+}
+
+main, header, footer, #particle-canvas {
+    transition: filter 0.3s ease;
+}
+
 /* Skip Link for Accessibility */
 .skip-link {
     position: absolute;
@@ -364,11 +379,13 @@ strong {
 
 /* Active Nav Link (ScrollSpy) */
 .nav-link.active {
-    color: var(--color-text);
+    color: var(--color-accent);
+    font-weight: 600;
 }
 
 .nav-link.active::after {
     width: 100%;
+    height: 3px; /* Thicker line for active state */
 }
 
 /* Theme Toggle Button */
@@ -1884,11 +1901,18 @@ h2.section-title.active {
     
     .nav-links .nav-link {
         padding: var(--space-sm) 0;
+        width: fit-content; /* Make underline match text width */
+    }
+    
+    /* Adjust underline position for mobile */
+    .nav-links .nav-link::after {
+        bottom: 4px; /* Move underline up inside the padding area */
     }
     
     .nav-links.active {
         max-height: 300px;
         opacity: 1;
+        padding-bottom: 5px; /* Ensure bottom underline isn't cut off */
     }
     
     .nav-toggle {
@@ -2142,7 +2166,7 @@ h2.section-title.active {
     [data-theme="dark"] .spotlight-card::after {
         background: radial-gradient(
             600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-            rgba(179, 157, 219, 0.08),
+            rgba(179, 157, 219, 0.15), /* Increased opacity from 0.08 to 0.15 */
             transparent 40%
         );
         mix-blend-mode: normal !important;
@@ -2154,7 +2178,7 @@ h2.section-title.active {
     [data-theme="dark"] .spotlight-card::after {
         background: radial-gradient(
             600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-            rgba(179, 157, 219, 0.08),
+            rgba(179, 157, 219, 0.15), /* Increased opacity from 0.08 to 0.15 */
             transparent 40%
         );
         mix-blend-mode: normal !important;
