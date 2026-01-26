@@ -9,16 +9,16 @@
     <meta name="robots" content="noindex, follow">
     
     <!-- Favicon -->
-    <link rel="shortcut icon" href="/Asset/icon/favicon.ico?v=2">
-    <link rel="icon" type="image/png" sizes="32x32" href="/Asset/icon/favicon-32x32.png?v=2">
-    <link rel="icon" type="image/png" sizes="16x16" href="/Asset/icon/favicon-16x16.png?v=2">
-    <link rel="apple-touch-icon" sizes="180x180" href="/Asset/icon/apple-touch-icon.png?v=2">
-    <link rel="manifest" href="/Asset/icon/site.webmanifest?v=2">
+    <link rel="shortcut icon" href="Asset/icon/favicon.ico?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="Asset/icon/favicon-32x32.png?v=2">
+    <link rel="icon" type="image/png" sizes="16x16" href="Asset/icon/favicon-16x16.png?v=2">
+    <link rel="apple-touch-icon" sizes="180x180" href="Asset/icon/apple-touch-icon.png?v=2">
+    <link rel="manifest" href="Asset/icon/site.webmanifest?v=2">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="styles.css">
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCLKD5S9ZX"></script>
@@ -143,44 +143,7 @@
         </div>
     </footer>
 
-    <script src="/script.js"></script>
-    <script src="/particles.js"></script>
-    
-    <script>
-        // 404 Specific Interactions
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Mouse Move Parallax for "404" Text
-            const errorPage = document.querySelector('.error-page');
-            const errorCode = document.querySelector('.error-code');
-            const errorMsg = document.querySelector('.error-message');
-            const errorDesc = document.querySelector('.error-desc');
-            
-            if (errorPage && !window.matchMedia('(hover: none)').matches) {
-                // Ensure initial state
-                errorCode.style.transition = 'transform 0.1s ease-out';
-                errorMsg.style.transition = 'transform 0.1s ease-out';
-                errorDesc.style.transition = 'transform 0.1s ease-out';
-                
-                document.addEventListener('mousemove', (e) => {
-                    // Calculate relative to center
-                    const x = (window.innerWidth / 2 - e.pageX) / 25;
-                    const y = (window.innerHeight / 2 - e.pageY) / 25;
-                    
-                    // Apply parallax without transition lag
-                    // Note: We keep a tiny transition (0.1s) defined above for smoothness, 
-                    // or set to 'none' for raw responsiveness. 
-                    // Given the heavy elements, raw might be better.
-                    errorCode.style.transition = 'none';
-                    errorMsg.style.transition = 'none';
-                    errorDesc.style.transition = 'none';
-
-                    // Layered parallax movement (Reverse direction for depth feel)
-                    errorCode.style.transform = `translate(${x}px, ${y}px)`;
-                    errorMsg.style.transform = `translate(${x/1.5}px, ${y/1.5}px)`;
-                    errorDesc.style.transform = `translate(${x/3}px, ${y/3}px)`;
-                });
-            }
-        });
-    </script>
+    <script src="script.js"></script>
+    <script src="particles.js"></script>
 </body>
 </html>
