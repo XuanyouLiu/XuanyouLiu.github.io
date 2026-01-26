@@ -14,7 +14,8 @@
 
     const interactionEnabled = () => (
         !window.matchMedia('(pointer: coarse)').matches &&
-        !window.matchMedia('(hover: none)').matches
+        !window.matchMedia('(hover: none)').matches &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches
     );
     
     let width, height;
@@ -33,6 +34,9 @@
         height = canvas.height = window.innerHeight;
         initShapes();
     }
+    
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     
     // Shape class
     class Shape {
@@ -164,6 +168,12 @@
     
     // Animation loop with frame rate limiting for Safari
     function animate(currentTime) {
+        // Stop animation if reduced motion is preferred
+        if (prefersReducedMotion.matches) {
+            ctx.clearRect(0, 0, width, height);
+            return;
+        }
+
         animationId = requestAnimationFrame(animate);
         
         // Frame rate limiting for Safari

@@ -17,7 +17,88 @@ document.addEventListener('DOMContentLoaded', () => {
     initVideoPreview();
     initMagneticButtons();
     initProfileImageTap();
+    initScrollProgress();
+    initImageFadeIn();
+    initBibTexCopy();
 });
+
+/**
+ * Initialize Image Fade-in
+ */
+function initImageFadeIn() {
+    const images = document.querySelectorAll('img[loading="lazy"], .hero-image img');
+    
+    images.forEach(img => {
+        if (img.complete) {
+            img.classList.add('loaded');
+        } else {
+            img.addEventListener('load', () => {
+                img.classList.add('loaded');
+            });
+        }
+    });
+}
+
+/**
+ * BibTeX Copy Functionality
+ */
+function initBibTexCopy() {
+    const bibBtns = document.querySelectorAll('.bibtex-btn');
+    const toast = document.querySelector('.toast-container');
+    
+    if (!bibBtns.length || !toast) return;
+    
+    let toastTimeout;
+    
+    bibBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent card expansion
+            const bibText = btn.getAttribute('data-bibtex');
+            
+            if (bibText) {
+                navigator.clipboard.writeText(bibText).then(() => {
+                    showToast();
+                }).catch(err => {
+                    console.error('Failed to copy BibTeX', err);
+                });
+            }
+        });
+    });
+    
+    function showToast() {
+        if (toastTimeout) clearTimeout(toastTimeout);
+        
+        toast.classList.add('visible');
+        
+        toastTimeout = setTimeout(() => {
+            toast.classList.remove('visible');
+        }, 3000);
+    }
+}
+
+/**
+ * Scroll Progress Bar
+ */
+function initScrollProgress() {
+    const progressBar = document.querySelector('.scroll-progress-bar');
+    
+    if (!progressBar) return;
+    
+    const updateProgress = () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = (scrollTop / scrollHeight) * 100;
+        
+        progressBar.style.width = `${scrollPercent}%`;
+    };
+    
+    window.addEventListener('scroll', () => {
+        window.requestAnimationFrame(updateProgress);
+    });
+    
+    // Initial call
+    updateProgress();
+}
 
 /**
  * Mobile Navigation Toggle
@@ -35,6 +116,10 @@ function initNavigation() {
         navToggle.addEventListener('click', () => {
             const isOpen = navLinks.classList.toggle('active');
             navToggle.classList.toggle('active');
+            
+            // Toggle body scroll lock
+            document.body.classList.toggle('no-scroll', isOpen);
+            
             updateAriaState(isOpen);
         });
         
@@ -43,6 +128,7 @@ function initNavigation() {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
                 navToggle.classList.remove('active');
+                document.body.classList.remove('no-scroll'); // Unlock scroll
                 updateAriaState(false);
             });
         });
@@ -52,6 +138,9 @@ function initNavigation() {
             if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
                 navLinks.classList.remove('active');
                 navToggle.classList.remove('active');
+                if (document.body.classList.contains('no-scroll')) {
+                    document.body.classList.remove('no-scroll'); // Unlock scroll
+                }
                 updateAriaState(false);
             }
         });
@@ -61,6 +150,7 @@ function initNavigation() {
             if (e.key === 'Escape' && navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
                 navToggle.classList.remove('active');
+                document.body.classList.remove('no-scroll'); // Unlock scroll
                 updateAriaState(false);
                 navToggle.focus();
             }
