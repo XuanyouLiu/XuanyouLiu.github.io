@@ -156,14 +156,28 @@
             const errorDesc = document.querySelector('.error-desc');
             
             if (errorPage && !window.matchMedia('(hover: none)').matches) {
+                // Ensure initial state
+                errorCode.style.transition = 'transform 0.1s ease-out';
+                errorMsg.style.transition = 'transform 0.1s ease-out';
+                errorDesc.style.transition = 'transform 0.1s ease-out';
+                
                 document.addEventListener('mousemove', (e) => {
-                    const x = (window.innerWidth / 2 - e.pageX) / 20;
-                    const y = (window.innerHeight / 2 - e.pageY) / 20;
+                    // Calculate relative to center
+                    const x = (window.innerWidth / 2 - e.pageX) / 25;
+                    const y = (window.innerHeight / 2 - e.pageY) / 25;
                     
-                    // Layered parallax movement
+                    // Apply parallax without transition lag
+                    // Note: We keep a tiny transition (0.1s) defined above for smoothness, 
+                    // or set to 'none' for raw responsiveness. 
+                    // Given the heavy elements, raw might be better.
+                    errorCode.style.transition = 'none';
+                    errorMsg.style.transition = 'none';
+                    errorDesc.style.transition = 'none';
+
+                    // Layered parallax movement (Reverse direction for depth feel)
                     errorCode.style.transform = `translate(${x}px, ${y}px)`;
-                    errorMsg.style.transform = `translate(${x/2}px, ${y/2}px)`;
-                    errorDesc.style.transform = `translate(${x/4}px, ${y/4}px)`;
+                    errorMsg.style.transform = `translate(${x/1.5}px, ${y/1.5}px)`;
+                    errorDesc.style.transform = `translate(${x/3}px, ${y/3}px)`;
                 });
             }
         });

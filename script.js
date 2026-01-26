@@ -676,11 +676,20 @@ function initMagneticButtons() {
             // Magnetic strength (lower number = stronger pull)
             const strength = 5; 
             
+            // CRITICAL: Disable transition during movement for instant follow
+            btn.style.transition = 'none';
             btn.style.transform = `translate(${x/strength}px, ${y/strength}px)`;
         });
 
         btn.addEventListener('mouseleave', () => {
+            // Restore transition for smooth reset
+            btn.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.2s, color 0.2s, border-color 0.2s';
             btn.style.transform = 'translate(0, 0)';
+            
+            // Clean up inline transition after animation so hover states work cleanly
+            setTimeout(() => {
+                btn.style.transition = '';
+            }, 400);
         });
     });
 }
