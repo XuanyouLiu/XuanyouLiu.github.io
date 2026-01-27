@@ -1231,7 +1231,8 @@ h2.section-title.active {
     border-radius: var(--border-radius);
     overflow: hidden;
     border: 1px solid var(--color-border-light);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Smooth apple-like spring */
+    /* Slower, smoother transition for the card lift */
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -1378,7 +1379,8 @@ h2.section-title.active {
         max-height: 0;
         opacity: 0;
         overflow: hidden;
-        transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease;
+        /* Slower transition for mobile toggle */
+        transition: max-height 0.5s ease, opacity 0.5s ease, margin-top 0.5s ease;
     }
     
     .project-card.expanded .project-tags {
@@ -1396,10 +1398,10 @@ h2.section-title.active {
         opacity: 0;
         overflow: hidden;
         
-        /* Sync with description animation */
-        transition: max-height 0.35s ease,
-                    opacity 0.35s ease,
-                    margin-top 0.35s ease;
+        /* Sync with description animation - slower duration */
+        transition: max-height 0.5s ease,
+                    opacity 0.5s ease,
+                    margin-top 0.5s ease;
     }
 
     .project-card:hover .project-tags {
@@ -1500,7 +1502,8 @@ h2.section-title.active {
     max-height: 4.5em;
     overflow: hidden;
     position: relative;
-    transition: max-height 0.35s ease;
+    /* Slower expansion animation */
+    transition: max-height 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 /* Fade out gradient to indicate more content */
@@ -1513,7 +1516,7 @@ h2.section-title.active {
     height: 1.5em;
     background: linear-gradient(transparent, var(--color-surface));
     pointer-events: none;
-    transition: opacity 0.35s ease;
+    transition: opacity 0.5s ease;
 }
 
 /* Expand description on hover (desktop only) */
