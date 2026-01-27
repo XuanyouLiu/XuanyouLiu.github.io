@@ -18,9 +18,35 @@ document.addEventListener('DOMContentLoaded', () => {
     initMagneticButtons();
     initProfileImageTap();
     initScrollProgress();
+    initScrollPerformance();
     initImageFadeIn();
     initBibTexCopy();
 });
+
+/**
+ * Initialize Scroll Performance Optimization
+ * Disables pointer events while scrolling to prevent hover effects and improve fps
+ */
+function initScrollPerformance() {
+    let isScrolling;
+    const body = document.body;
+
+    window.addEventListener('scroll', () => {
+        // Clear our timeout throughout the scroll
+        window.clearTimeout(isScrolling);
+
+        // Add class to disable hover effects
+        if (!body.classList.contains('is-scrolling')) {
+            body.classList.add('is-scrolling');
+        }
+
+        // Set a timeout to run after scrolling ends
+        isScrolling = setTimeout(() => {
+            // Remove the class
+            body.classList.remove('is-scrolling');
+        }, 150); // 150ms after scroll stops
+    }, { passive: true });
+}
 
 /**
  * Initialize Image Fade-in

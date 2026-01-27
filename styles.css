@@ -89,6 +89,12 @@ body.no-scroll {
     overflow: hidden;
 }
 
+/* Disable pointer events while scrolling for better performance & UX */
+.is-scrolling,
+.is-scrolling * {
+    pointer-events: none !important;
+}
+
 /* Blur content when menu is open */
 body.no-scroll main,
 body.no-scroll header,
