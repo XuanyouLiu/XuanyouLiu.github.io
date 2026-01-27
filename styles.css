@@ -1053,8 +1053,8 @@ h2.section-title.active {
     
     /* Apply smooth transition to container only */
     .pub-item {
-        /* Slower, more natural easing */
-        transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        /* Slower, more natural easing - Increased duration from 0.4s to 0.6s */
+        transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 }
 
@@ -1063,7 +1063,8 @@ h2.section-title.active {
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-    transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.2s ease, margin 0.2s ease;
+    /* Increased durations: max-height 0.3s -> 0.5s, opacity 0.2s -> 0.4s */
+    transition: max-height 0.5s ease, opacity 0.4s ease, padding 0.4s ease, margin 0.4s ease;
     font-size: 0.9375rem;
     line-height: 1.7;
     color: var(--color-text-muted);
