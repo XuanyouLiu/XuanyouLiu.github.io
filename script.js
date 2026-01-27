@@ -55,12 +55,20 @@ function initImageFadeIn() {
     const images = document.querySelectorAll('img[loading="lazy"], .hero-image img');
     
     images.forEach(img => {
-        if (img.complete) {
+        // Find the skeleton container
+        const container = img.closest('.hero-image, .pub-thumbnail, .project-image');
+        
+        const onImageLoad = () => {
             img.classList.add('loaded');
+            if (container) {
+                container.classList.add('loaded');
+            }
+        };
+
+        if (img.complete) {
+            onImageLoad();
         } else {
-            img.addEventListener('load', () => {
-                img.classList.add('loaded');
-            });
+            img.addEventListener('load', onImageLoad);
         }
     });
 }
