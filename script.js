@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initSpotlightEffect();
     initVideoPreview();
     initMagneticButtons();
-    initProfileImageTap();
     initScrollProgress();
     initScrollPerformance();
     initImageFadeIn();
@@ -716,21 +715,5 @@ function initMagneticButtons() {
         btn.addEventListener('mouseleave', () => {
             btn.style.transform = 'translate(0, 0)';
         });
-    });
-}
-
-/**
- * Profile Image Tap Toggle (Mobile)
- * On touch devices, tap to toggle between profile images
- */
-function initProfileImageTap() {
-    // Only apply on touch devices
-    if (!window.matchMedia('(hover: none)').matches) return;
-
-    const heroImage = document.querySelector('.hero-image');
-    if (!heroImage) return;
-
-    heroImage.addEventListener('click', () => {
-        heroImage.classList.toggle('tapped');
     });
 }
